@@ -45,8 +45,11 @@ Grading updates:
 {% capture release_date %}{{page.release_date | date: '%s'}}{% endcapture %}
 {% capture due_date %}{{page.due_date | date: '%s'}}{% endcapture %}
 {% if release_date < now and due_date >= now %}
-<div class="alert alert-info">
-<a href="{{page.url}}">{{ page.title }}</a> has been released.  
+<div class="alert alert-info" markdown="span">
+<!-- <a href="{{site.baseurl}}/{{page.url}}">{{ page.title }}</a> has been released. -->
+<!-- <a href="{{site.baseurl}}+{{page.url}}">{{ page.title }}</a> has been released. -->
+<!-- this is annoyingly broken. Why doesn't it render to expansions? -->
+[{{page.title}}](http://markyatskar.com/cis530_sp2021/{{page.url}}) has been released.
 {% if page.deliverables %}
 The assignment has multiple deliverables.
 <ul>
