@@ -33,7 +33,7 @@ Most homework assignments in this class can be done with a partner, but this one
 
 
 <div class="alert alert-info" markdown="span">
-Links to tutorials and other Python resources are posted on the [resources page](resources.html).</div>
+Links to tutorials and other Python resources are posted on the [resources page]({{site.baseurl}}/resources.html).</div>
 
 
 Python and Bash Skills <span class="text-muted">: Assignment 1</span> 
@@ -55,7 +55,7 @@ commands into the shell, we refer to these as bash commands. When you write a fi
 
 In order to learn bash, we've picked 3 commands for you to implement, each of which we've found useful in our research.
 These questions might be tricky; you should take advantage of Piazza and TA office hours for guidance.
-Our [basic](tutorials/2017-03-06-bash-for-nlp-tutorial-basic.md), and [advanced](tutorials/2017-03-07-bash-for-nlp-tutorial-topics.md) bash tutorials may be of particular use.
+Our [basic]({{site.baseurl}}/tutorials/2017-03-06-bash-for-nlp-tutorial-basic.html), and [advanced]({{site.baseurl}}/tutorials/2017-03-07-bash-for-nlp-tutorial-topics.html) bash tutorials may be of particular use.
 
 When you've finished getting your solutions
 working on the command line, use the template files `bash_q1.sh`, `bash_q2.sh`, and `bash_q3.sh` which can be downloaded [here](bash.zip), 
@@ -159,6 +159,7 @@ _Note: The bash template you downloaded may ask you to average the lines. Don't 
 
 All your answers should be added to `python_questions.py`, which can be downloaded [here](python_questions.py).
 If you'd like to include any import statements other than the ones already provided, post on Piazza for permission first.
+Make sure your code runs as expected in Python 3.
 
 ### 2.1. File I/O
 You can open, read, and write files using the aptly-named open(), read(), and write() commands. read() returns the entire contents of
