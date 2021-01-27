@@ -1,6 +1,7 @@
 -
   date: 2021-01-21
   title: Course Intro / Text Classification and Sentiment Analysis
+  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=70a42f5b-b359-4a44-9c6f-acb701573b17
   readings:   
     - 
       title: Chapter 4 "Naive Bayes Classification and Sentiment"
@@ -15,10 +16,11 @@
       title: Movie Review Data
       authors: Bo Pang and Lillian Lee
       url: http://www.cs.cornell.edu/people/pabo/movie-review-data/
+
 -
   date: 2021-01-26
   title: Text Classification Wrapup / Text Processing
-  recording: 
+  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8d739dae-bdc3-43b5-9efb-acbc017d40fd
   readings:   
     - 
       title: Chapter 2 "Regular Expressions, Text Normalization, and Edit Distance"

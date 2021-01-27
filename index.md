@@ -82,7 +82,14 @@ Time and place
 
 
 Office hours
-: TBD 
+: To join the office hour queue, please go to [OHQ.io](https://ohq.io/courses/193).
+: Monday 8:30pm - 10:00pm Eastern - Pengrui
+: Tuesday 10:30am - 12:00pm Eastern - Haren
+: Tuesday 5:00pm - 6:30pm Eastern - Chaitanya
+: Wednesday 1:30pm - 3:00pm Eastern - Mark (zoom)
+: Wednesday 3:00pm - 4:30pm Eastern - Yue
+: Thursday 3:00pm -4:30pm Eastern - Weiqiu
+: Saturday 10:00am - 11:30am Eastern - Daniel
 
 
 Textbooks
