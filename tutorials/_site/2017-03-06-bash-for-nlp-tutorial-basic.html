@@ -1,0 +1,344 @@
+<h1 id="basic-bash-for-nlp-tutorial">Basic bash for NLP tutorial</h1>
+
+<p>Bash is a language that allows for easy manipulation of Unix-like computing environments. 
+Frequently in NLP research, quick simple tasks like “how many lines are there in this file” or “how can I copy a file to 100 places at the same time” arise, and can best be solved with <code class="language-plaintext highlighter-rouge">bash</code>, and some easily-usable affiliate programs.</p>
+
+<p>Beyond this, Bash is much more versatile and useful than many give it credit for, and advanced knowledge of bash can make projects involving very large systems and/or multi-step pipelines <em>truly a joy</em>.</p>
+
+<h2 id="when-to-use-bash-when-not-to">When to use bash; When not to</h2>
+
+<p>I love bash dearly. 
+That’s not to say it’s the answer to every problem in NLP.</p>
+
+<h3 id="use-bash-when">Use bash when</h3>
+<ul>
+  <li>You need to move, and/or rename one or many files</li>
+  <li>You need to set up folder structures, create symbolic links (more on this later), and generally change the file system.</li>
+  <li>You want basic statistics on one or many files (e.g. “I have 3,000,000 lines of log files, and if the word ‘error’ appears, something failed. Did it ever appear?”)</li>
+  <li>You want to submit multiple jobs to the scheduler with similar parameters</li>
+  <li>You want to set up a “pipeline”, which means a set of processing steps that takes input files and produces output files, using multiple independent programs.</li>
+</ul>
+
+<h3 id="dont-use-bash-when">Don’t use bash when</h3>
+<ul>
+  <li>You need to do a lot of arithmetic computation, especially division/multiplication</li>
+  <li>You need library support (for, say, reading TSVs, or JSON, etc.)</li>
+  <li>You plan to make copious use of fun data structures like sets, counters,  UnionFind, MyArbitraryClass, or TrieHeapMapBellmanFordImpl</li>
+</ul>
+
+<h2 id="file-system-and-unix-basics">File system and unix basics</h2>
+
+<p>As we said in <strong>use bash when</strong>, we frequently use bash to manipulate a Unix file system.
+The unix filesystem is a rooted tree-like data structure. Its root is <code class="language-plaintext highlighter-rouge">/</code>. This forward slash is known as “root”. Below is a diagram showing a selection of the root of the <code class="language-plaintext highlighter-rouge">nlpgrid</code> filesystem(s). 
+<img src="/assets/img/unix-filesystem.png" alt="My helpful screenshot" style="height: 400px;" />
+<!--![My helpful screenshot](/assets/img/unix-filesystem.png)--></p>
+
+<p>When using bash, you are always “at” one of the nodes in the filesystem tree. 
+Every command you run is run relative to your current node, or “folder”, or more commonly, “directory.”
+A “path” is a list of names of folders combined with forward slashes (<code class="language-plaintext highlighter-rouge">/</code>) that takes you either from root (an <em>absolute</em> path) or from any arbitrary directory (a <em>relative</em> path) to some other directory.</p>
+
+<h3 id="knowing-where-you-are">Knowing where you are</h3>
+
+<p>When running bash commands, <code class="language-plaintext highlighter-rouge">.</code>, the period, corresponds to your current directory.
+When reading or writing files, the <code class="language-plaintext highlighter-rouge">.</code> is implicit. Let’s demonstrate this with a file.
+Open up a terminal and run</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    touch testfile
+</code></pre></div></div>
+
+<p>This creates a file named <code class="language-plaintext highlighter-rouge">testfile</code> if it doesn’t exist, or updates the ‘last-read’ flag on the file if it already existed.
+Now, list the contents of your current directory with</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    ls
+</code></pre></div></div>
+
+<p>You should see (possibly among other things) the file <code class="language-plaintext highlighter-rouge">testfile</code>. 
+You can demonstrate that this is equivalent to:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    touch ./testfile
+    ls .
+</code></pre></div></div>
+
+<p>In both cases, the <code class="language-plaintext highlighter-rouge">.</code> was implicit.</p>
+
+<p>However, when specifying <em>commands</em>, the <code class="language-plaintext highlighter-rouge">.</code> is not implicit. For example, try running</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    ./touch testfile
+</code></pre></div></div>
+
+<p>You should find that bash complains with a command-not-found error.
+This is because you told bash “look for the command <code class="language-plaintext highlighter-rouge">touch</code>; it’ll be in this directory.”
+Without the prepended <code class="language-plaintext highlighter-rouge">./</code>, the command <code class="language-plaintext highlighter-rouge">touch</code> is found by other means, which we’ll find later.</p>
+
+<p>Specifying the location of files you want to work with can be more complex than just looking in your current directory, however. For example, make a directory within your current directory with</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    mkdir testfolder
+</code></pre></div></div>
+
+<p>Now, make a new file in that directory, and demonstrate that the file is in the directory, with</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    touch testfolder/testfile2
+    ls testfolder
+</code></pre></div></div>
+
+<p>You can also change your working directory, which changes the location from which your commands are run.
+For example, if we run</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    cd testfolder
+    ls
+</code></pre></div></div>
+
+<p>We should see <code class="language-plaintext highlighter-rouge">testfile2</code>, not <code class="language-plaintext highlighter-rouge">testfile</code>. To return to the directory just 1 “above” (or, closer to <code class="language-plaintext highlighter-rouge">/</code>) from the current directory, run</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    cd ..
+</code></pre></div></div>
+
+<p>Where <code class="language-plaintext highlighter-rouge">..</code> is short for “parent directory”.</p>
+
+<h4 id="directory-navigation-quick-tips">Directory navigation quick tips</h4>
+<p>Here are some other quick commands you’d otherwise have to search for at some point:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">cd -</code> sends you to <em>the last directory you were in, whatever that was</em>, and prints the name of that directory.</li>
+  <li><code class="language-plaintext highlighter-rouge">~</code> the tilde represents your “home” directory. On my laptop, for example, thats <code class="language-plaintext highlighter-rouge">/home/johnhew</code>. If you run a command with the tilde, it will be replaced by the location of your home diretory.</li>
+  <li><code class="language-plaintext highlighter-rouge">*</code> the asterisc stands for “everything within the directory I’ve just specified”. Thus <code class="language-plaintext highlighter-rouge">ls *</code> means “list the contents of every file/directory in the current directory.”</li>
+  <li><code class="language-plaintext highlighter-rouge">pwd</code> is a command that prints the absolute path of the current working directory</li>
+  <li><code class="language-plaintext highlighter-rouge">tree</code> is a fun commands that lists the tree structure starting from the current working directory and searching “down” (away from <code class="language-plaintext highlighter-rouge">/</code>).</li>
+</ul>
+
+<h3 id="file-copying-and-movement">File copying and movement</h3>
+
+<p>To copy a file located at <code class="language-plaintext highlighter-rouge">oldloc</code> to a new location <code class="language-plaintext highlighter-rouge">newloc</code>, use the `cp command as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    cp oldloc newloc
+</code></pre></div></div>
+
+<p>Seems simple enough. <code class="language-plaintext highlighter-rouge">oldloc</code> and <code class="language-plaintext highlighter-rouge">newloc</code> can each be an absolute path, like <code class="language-plaintext highlighter-rouge">/nlp/data/johnhew/expts/realgooddata.txt.png</code>, or a relative path like <code class="language-plaintext highlighter-rouge">realgooddata.txt.png</code>.
+The semantics of cp allows you to <strong>copy multiple files to one location</strong>, but not copy 1 file to multiple locations. By this I mean when you run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    cp loc1 loc2 loc3 loc4 loc5
+</code></pre></div></div>
+
+<p>You’re copying <code class="language-plaintext highlighter-rouge">loc1</code> through <code class="language-plaintext highlighter-rouge">loc4</code> <em>all</em> into <code class="language-plaintext highlighter-rouge">loc5</code>. If <code class="language-plaintext highlighter-rouge">loc5</code> is a directory and <code class="language-plaintext highlighter-rouge">loc1,loc2,loc3,loc4</code> all have unique filenames, all 4 files will be copied into the <code class="language-plaintext highlighter-rouge">loc5</code> directory.
+If <code class="language-plaintext highlighter-rouge">loc5</code> is a file (or didn’t exist previously), each file will be copied sequentially into <code class="language-plaintext highlighter-rouge">loc5</code>, squashing all old files. In other words, all you’ll end up with at <code class="language-plaintext highlighter-rouge">loc5</code> is (in this case) <code class="language-plaintext highlighter-rouge">loc4</code>.</p>
+
+<p>If you don’t want to keep the old file locations, use the <code class="language-plaintext highlighter-rouge">mv</code> (move) command instead of <code class="language-plaintext highlighter-rouge">cp</code>.</p>
+
+<h2 id="reading-editing-analyzing-files">Reading, editing, analyzing files</h2>
+<p>Moving files is great, but actually working with files <em>contents</em> is great too.</p>
+
+<h3 id="an-optional-aside--vim">An <em>optional</em> aside : vim</h3>
+
+<p>To integrate file editing into your bash workflow, I highly suggest putting in the time to learn <code class="language-plaintext highlighter-rouge">vim</code>, the world’s best text editor. 
+There’s a bit of a learning curve, but many things are googleable, and I’ll start you off with two things:</p>
+
+<ul>
+  <li>Use <code class="language-plaintext highlighter-rouge">:q</code> to quit.</li>
+  <li>
+    <p>Here’s a good starter <code class="language-plaintext highlighter-rouge">vimrc</code>, which is a configuration file. Google for more info.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> filetype indent on
+ filetype plugin on
+ set expandtab
+ set mouse=a
+ set pastetoggle=&lt;F2&gt;
+ syntax enable
+ set tabstop=2
+ set shiftwidth=2
+ set softtabstop=2
+ set autoindent
+ set whichwrap+=&lt;,&gt;,h,l,[,]
+ set cursorline
+ set number
+ set hlsearch
+ set lazyredraw
+ set omnifunc=syntaxcomplete#Complete
+ set grepprg=grep\ -nH\ $*
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="printing-and-streams">Printing and streams</h2>
+
+<p>To pring a file’s contents, run the <code class="language-plaintext highlighter-rouge">cat</code> command. (This stands for “concatentate”. If you run <code class="language-plaintext highlighter-rouge">cat</code> on multiple files, it prints them all out, one after the other.)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    cat file1 file2 file3
+</code></pre></div></div>
+
+<p>What we’ve siad so far about “printing” has been pretty self-evident: text shows up in your bash terminal.
+However, it is useful to know a bit more about how this works.
+Any program has access to two “streams”, known as <code class="language-plaintext highlighter-rouge">stdout</code> and <code class="language-plaintext highlighter-rouge">stderr</code>, for “standard output” and “standard error”.
+(To learn more about their true nature, take <code class="language-plaintext highlighter-rouge">CIS 380 : Operating Systems</code>.)
+When a program prints, it writes data to <code class="language-plaintext highlighter-rouge">stdout</code>. By default, <code class="language-plaintext highlighter-rouge">stdout</code> is printed to your terminal (as is <code class="language-plaintext highlighter-rouge">stderr</code>.)
+However, we can “redirect” these streams to, for example, concatentate 3 files:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  cat file1 file2 file3 &gt; fileall
+</code></pre></div></div>
+
+<p>This has just printed all of files 1,2,3 into the file <code class="language-plaintext highlighter-rouge">fileall</code>. The <code class="language-plaintext highlighter-rouge">&gt;</code> character is called a “redirection”; it 
+redirects the <code class="language-plaintext highlighter-rouge">stdout</code> stream to the file specified after it.</p>
+
+<h4 id="streams-quick-tips">Streams quick tips</h4>
+<ul>
+  <li>
+    <p>to redirect <code class="language-plaintext highlighter-rouge">stdout</code> not to a <em>file</em>, but to another program, use a pipe, <code class="language-plaintext highlighter-rouge">|</code>, as such:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> cat file1 file2 file3 | sort | uniq 
+</code></pre></div>    </div>
+  </li>
+  <li>to redirect <code class="language-plaintext highlighter-rouge">stderr</code>, use the following: <code class="language-plaintext highlighter-rouge">2&gt;</code></li>
+  <li>
+    <p>to redirect <code class="language-plaintext highlighter-rouge">stdout</code> to a file, <em>but also see the output on your terminal</em>, use the <code class="language-plaintext highlighter-rouge">tee</code> command, as follows:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> cat file1 file2 file3 | tee fileall
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="searching-and-analysis">Searching and analysis</h2>
+
+<p>To search for a string <code class="language-plaintext highlighter-rouge">string</code> within files <code class="language-plaintext highlighter-rouge">file1</code>, <code class="language-plaintext highlighter-rouge">file2</code>, <code class="language-plaintext highlighter-rouge">file3</code>, use the program <code class="language-plaintext highlighter-rouge">grep</code> as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    grep string file1 file2 file3
+</code></pre></div></div>
+
+<p>This will print out lines in each file that have the string <code class="language-plaintext highlighter-rouge">string</code>.</p>
+
+<p>If your string has a space in it, you must enclose it in quotes (either single or double,) as in:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    grep "error happened" file1 file2 file3
+</code></pre></div></div>
+
+<p>Grep is more powerful than this; instead of using a string, you can search for an arbitrary <code class="language-plaintext highlighter-rouge">pattern</code>, described by Regular Expressions.
+(That’s worth a tutorial in itself.)</p>
+
+<p>To count “things” in a file, use the program <code class="language-plaintext highlighter-rouge">wc</code> as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    wc file1
+</code></pre></div></div>
+
+<p>This will print the number of characters, number of words (whitespace-delimited) and number of lines in the file.</p>
+
+<p>Similarly, you can run both <code class="language-plaintext highlighter-rouge">wc</code> and <code class="language-plaintext highlighter-rouge">grep</code> on output piped from some other process, as in:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    cat file1 file2 file3 | sort | uniq | grep "error found" 
+    cat file1 file2 file3 | sort | uniq | grep "error found" | wc
+</code></pre></div></div>
+
+<h4 id="wc-and-grep-quick-tips"><code class="language-plaintext highlighter-rouge">wc</code> and <code class="language-plaintext highlighter-rouge">grep</code> quick tips:</h4>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">grep -c</code> will print the number of lines that matched, instead of the lines themselves. This is equivalent to piping through <code class="language-plaintext highlighter-rouge">wc -l</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">grep -n</code> will print the line numbers of the matching lines (along with the matching lines)</li>
+  <li><code class="language-plaintext highlighter-rouge">grep -r pattern dir</code> will recursively grep through a given directory <code class="language-plaintext highlighter-rouge">dir</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">wc -w</code> will just give the word count, similarly <code class="language-plaintext highlighter-rouge">wc -l</code> will just give the line count.</li>
+</ul>
+
+<h2 id="shortcuts-and-efficiency">Shortcuts and efficiency</h2>
+
+<p>Working with files in bash can be much faster than using a GUI. 
+These shortcuts will help you get up to speed.</p>
+
+<h3 id="tab-completion">Tab completion</h3>
+<p>Typing out long paths and filenames is very tedious, and prone to error. 
+Bash provides a solution to both of these problems in “tab completion”.</p>
+
+<p>As you type a file name, bash knows all the files in the directory you’ve specified so far, and knows which files you <em>could</em> be referring to, based on the prefix you’ve written so far. 
+At any time as you’re writing a filename, if you press <code class="language-plaintext highlighter-rouge">&lt;tab&gt;</code>, bash will determine whether it can unambiguously fill in any portion of the rest of the filename.</p>
+
+<p>Let’s look at a few examples to make this concrete.
+In a new directory, type the following commands:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    touch file1
+    touch file2
+</code></pre></div></div>
+
+<p>Now, type in <code class="language-plaintext highlighter-rouge">vim fi</code> and then hit <code class="language-plaintext highlighter-rouge">&lt;tab&gt;</code>. 
+Notice that bash completes to <code class="language-plaintext highlighter-rouge">vim file</code> without any work. 
+Because these were the only files in the directory, bash knew that when you wrote <code class="language-plaintext highlighter-rouge">fi</code>, you meant either <code class="language-plaintext highlighter-rouge">file1</code> or <code class="language-plaintext highlighter-rouge">file2</code>. It won’t complete further than that because it can’t be sure which of the two you mean. So, you have to fill in the rest of the file name.</p>
+
+<p>Note that if you have a directory with only one file in it, the empty prefix is unambiguous, and a <code class="language-plaintext highlighter-rouge">&lt;tab&gt;</code> completion will fill in the whole filename for you. 
+Further, use tab completion not only on files, but also on long directory paths. For example, instead of typing out all of</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    /nlp/users/johnhew/common-crawl/corpusplz/src/core/corpus_filter.py
+</code></pre></div></div>
+
+<p>I generally tend to write:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    /nlp/u&lt;tab&gt;/joh&lt;tab&gt;/co&lt;tab&gt;/cor&lt;tab&gt;/src/c&lt;tab&gt;/cor&lt;tab&gt;
+</code></pre></div></div>
+
+<p>Even here, the forward slashes <code class="language-plaintext highlighter-rouge">/</code> aren’t typed by me, since the tab completion includes them, saving a lot of work.</p>
+
+<h3 id="command-history-reverse-search">Command history reverse-search</h3>
+<p>Typing out long lists of commands over and over again is a pain. Thankfully, bash includes a finite history of commands, and a nice search interface.</p>
+
+<p>First, as you might figure out accidentally, pressing the up arrow key returns you to the last command you ran.
+This is very helpful, but scrolling through tons of commands to find something you ran yesterday can be tedious.</p>
+
+<p>This is where the reverse-search comes in handy.
+It allows you to search for commands in your history that include a substring you specify.
+Type <code class="language-plaintext highlighter-rouge">ctl-r</code> in the terminal (hold <code class="language-plaintext highlighter-rouge">ctl</code> and press <code class="language-plaintext highlighter-rouge">r</code>), and you’ll notice your command prompt is replaced with <code class="language-plaintext highlighter-rouge">(reverse-i-search)</code>. Now, type in a few letters that you remember were a part of the command, and it’ll search through your history to find the first command that matches your query.</p>
+
+<p>For example, I might look for the last time I <code class="language-plaintext highlighter-rouge">qsub</code>‘d something to the scheduler with <code class="language-plaintext highlighter-rouge">ctl-r</code> followed by <code class="language-plaintext highlighter-rouge">qsub</code>. 
+If the first matching command isn’t what you’re looking for and you want to keep looking back through more matching commands, hit <code class="language-plaintext highlighter-rouge">ctl-r</code> subsequent times to move back through them.</p>
+
+<p>A few notes:</p>
+<ul>
+  <li>If you keep hitting <code class="language-plaintext highlighter-rouge">ctl-r</code> and the command you see doesn’t change, or if you type in a prefix and you don’t see a matching command appear, it means you don’t have any (more) commands that match your query.</li>
+  <li>If you want to keep the command you found with reverse search, I tend to use the <code class="language-plaintext highlighter-rouge">escape</code> key.</li>
+  <li>Ify ou want to discard the command you found with reverse search, I tend to use <code class="language-plaintext highlighter-rouge">ctl-c</code>.</li>
+</ul>
+
+<h3 id="typing-and-modifying-commands">Typing and modifying commands</h3>
+<p>Many “move my cursor to another position” tips are, unfortunately, operating system- (or desktop environment-) dependent. For example on linux with <code class="language-plaintext highlighter-rouge">i3</code>, I use <code class="language-plaintext highlighter-rouge">ctl+left\_arrow</code> or <code class="language-plaintext highlighter-rouge">ctl+right\_arrow</code> to move one word to the left or right in the commands I’m typing.</p>
+
+<p>However, there are a few excellent shortcuts to cut your command typing time:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ctl+k</code> erases everything from your cursor to the end of the line.</li>
+  <li><code class="language-plaintext highlighter-rouge">ctl+a</code> jumps your cursor to the start of the line.</li>
+  <li><code class="language-plaintext highlighter-rouge">ctl+e</code> jumps your cursor to the end of the line.</li>
+  <li><code class="language-plaintext highlighter-rouge">ctl+w</code> deletes a word to the left of your cursor.</li>
+</ul>
+
+<p>Note that you’ll have to get a feel for what a “word” means to bash. For example, whitespace separates words. Hyphens (<code class="language-plaintext highlighter-rouge">-</code>) do not separate words, and neither to underscores (<code class="language-plaintext highlighter-rouge">_</code>).</p>
+
+<h3 id="-prefix"><code class="language-plaintext highlighter-rouge">!</code>-prefix</h3>
+<p><em>This one is dangerous;</em> proceed with caution.</p>
+<ul>
+  <li>!! runs the last command again,</li>
+  <li><code class="language-plaintext highlighter-rouge">!string</code> runs the last command that starts with `string again.</li>
+  <li><code class="language-plaintext highlighter-rouge">!$</code> runs the last word of the previous command.</li>
+</ul>
+
+<h2 id="epilogue-compression">Epilogue: compression</h2>
+
+<p>If you find files with the extension <code class="language-plaintext highlighter-rouge">.tgz</code> <code class="language-plaintext highlighter-rouge">.tar.bz2</code>, <code class="language-plaintext highlighter-rouge">.tar.gz</code>, never fear. These are your friends in the unix environment.</p>
+
+<p>A <code class="language-plaintext highlighter-rouge">tar</code> file is an archive – that is, someone took a directory or a bunch of files, and stuck them together into one file for ease of transport.
+A <code class="language-plaintext highlighter-rouge">gzipped</code> or <code class="language-plaintext highlighter-rouge">bzipped</code> file is a <em>compressed</em> file; that is, someone used awesome compression algorithms to make a single file take up less space on disk.
+These strategies are frequently used together, leading to the file extensions seen above.
+Let’s look at what do to:</p>
+
+<ul>
+  <li>
+    <p>“I have a <code class="language-plaintext highlighter-rouge">.tar.gz</code>, and I want to get what’s inside it”</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  tar xzvf file.tar.gz
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>“I have a folder and/or some files <code class="language-plaintext highlighter-rouge">file1</code>, <code class="language-plaintext highlighter-rouge">directory3</code>, etc. , and I want to make it into an archive:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  tar czvf file.tar.gz file1 file2 directory3 directory4
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>“I want to know what <code class="language-plaintext highlighter-rouge">xzvf</code> and <code class="language-plaintext highlighter-rouge">czvf</code> mean”.
+Good question. <code class="language-plaintext highlighter-rouge">-x</code> means “extract” (i.e., from the archive). 
+<code class="language-plaintext highlighter-rouge">-z</code> means “use gzip compression”
+<code class="language-plaintext highlighter-rouge">-v</code> means “be verbose; that is, tell me what files you’re working on compressing/extracting right now by printing their paths to <code class="language-plaintext highlighter-rouge">stdout</code>.”
+<code class="language-plaintext highlighter-rouge">-f</code> means “I’ll specify the file that you’re going to work with, and it’s coming up next.”</p>
+  </li>
+</ul>
+
+<p><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="CC-Attribution-ShareAlike 4.0" /></p>

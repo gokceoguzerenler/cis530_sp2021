@@ -1,0 +1,221 @@
+<h1 id="advanced-bash-for-nlp-tutorial">Advanced bash for NLP tutorial</h1>
+
+<p>Bash can be used to do complex things faster than you could whip up a Python script to do the same things.
+However, because of tricky syntax and not altogether intuitive semantics, it tends to push people away when it tries to show love.
+In other words, <em>it’s frequently misunderstood.</em> 
+As computer scientists, we surely can empathize with bash, and give it a another chance.</p>
+
+<p>This tutorial is composed of topical case studies resolving around either solving a specific problem or becoming proficient with a specific tool. 
+It assumes you’ve read through the basic tutorial hosted on this site, and beyond that, have had some time twiddling around on the command line to get a feel for the ropes.</p>
+
+<h2 id="disclaimer-bash-operates-on-strings">Disclaimer: <em>bash operates on strings</em></h2>
+<p>I can’t stress this enough. File paths are strings. output is strings. 
+Command names are strings. 
+There are no types; there is nothing but string.</p>
+
+<h3 id="process-substitution">Process Substitution</h3>
+<p><em>Credit for this, my favorite bash tidbit, must be shared with Jonathan May.</em></p>
+
+<p>Many tools used in bash scripts take a variable number of arguments, each of which must be the location of a file. 
+For example, I use <code class="language-plaintext highlighter-rouge">paste</code> to take a side-by-side look at two similar files:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    paste model_output.ug gold_standard.ug
+</code></pre></div></div>
+
+<p>However, frequently the data we’re trying to analyze may be the output of processes. 
+In this case, we have to redirect <code class="language-plaintext highlighter-rouge">stdout</code> to a file for each process, and then paste together the results:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   tr ' ' '\n' &lt; model_output.ug | sort | uniq -c | sort -n &gt; model_types.freq
+   tr ' ' '\n' &lt; gold_standard.ug | sort | uniq -c | sort -n &gt; gold_types.freq
+   paste model_types.freq gold_types.freq
+</code></pre></div></div>
+
+<p>These commands count the frequency of space-separated words in a file, sort them, output them to a file, and then pastes them side-by-side for human analysis.</p>
+
+<p>Sometimes we want these temporary files (e.g. <code class="language-plaintext highlighter-rouge">model_types.freq</code>, <code class="language-plaintext highlighter-rouge">gold_types.freq</code>); other times we do not.</p>
+
+<p><strong>Process Substitution</strong> allows us to treat the output of each command as a file object without actually writing anything to disk. This has obvious I/O benefits, as well as potentially eliminating unwanted temporary files, and allowing for quicker re-execution of similar code. The syntax is as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    command_that_takes_files.sh file1.txt &lt;(foo.sh arg1 arg2 ) file3.txt
+</code></pre></div></div>
+
+<p>Here, the stdout of <code class="language-plaintext highlighter-rouge">foo.sh</code> is treated as if we had printed it to a file, and then included that file in the command. 
+Now, let’s re-write the type-frequency command sequence:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    paste &lt;(tr ' ' '\n' &lt; model_output.ug | sort | uniq -c | sort -n) \
+          &lt;(tr ' ' '\n' &lt; gold_standard.ug | sort | uniq -c | sort -n)
+</code></pre></div></div>
+
+<p><em>More later on how to chain together process substitution commands to make some unnecessarily complex, beautiful bash commands.</em></p>
+
+<h3 id="for-loops"><code class="language-plaintext highlighter-rouge">for</code> loops</h3>
+
+<p><code class="language-plaintext highlighter-rouge">for</code> loops in bash iterate over various types of strings. The easiest and most common use is to iterate over the contents of a directory.</p>
+
+<h4 id="iterating-over-the-contents-of-a-directory">Iterating over the contents of a directory</h4>
+
+<p>To iterate over the contents of the directory at the current directory , use the following;</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    for i in $( ls . ); do
+      echo $i
+    done
+</code></pre></div></div>
+
+<p>Let’s go through a few subtle aspects of this.</p>
+<ul>
+  <li>First, note that in each iteration of the loop, the variable <code class="language-plaintext highlighter-rouge">i</code> is assigned the value of some file in the directory at ``. To access the value of the variable <code class="language-plaintext highlighter-rouge">i</code> and not the <em>string</em> <code class="language-plaintext highlighter-rouge">i</code>, we use the dollar sign, thus <code class="language-plaintext highlighter-rouge">$i</code>.</li>
+  <li>Second, note the <code class="language-plaintext highlighter-rouge">$()</code> structure. This (I think?) runs the <code class="language-plaintext highlighter-rouge">ls</code> command. You can omit the first space, as in <code class="language-plaintext highlighter-rouge">$(ls path )</code>, but <strong>not</strong> the second space. In other words, <code class="language-plaintext highlighter-rouge">$( ls path)$ is invalid, since you're looking for the path </code>path)`.</li>
+  <li>Third, note that the <code class="language-plaintext highlighter-rouge">for</code> is matched with a corresponding <code class="language-plaintext highlighter-rouge">do</code> and a final <code class="language-plaintext highlighter-rouge">done</code>.</li>
+  <li>
+    <p>Fourth, the semicolon is necessary. However, the command could be inline’d as in</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> for i in $( ls path ); do echo $i; done
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>The semicolon after $i is necessary because the command <code class="language-plaintext highlighter-rouge">echo $i</code> must be terminated before the loop is terminated.</p>
+<ul>
+  <li>
+    <p>Fifth, let’s say I’m iterating over the contents of some absolute path:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> for i in $( ls /nlp/users/johnhew/goldstandarddata ); do echo $i; done
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>This will fail! Why? Because the variable <code class="language-plaintext highlighter-rouge">i</code> just stores the path relative to <code class="language-plaintext highlighter-rouge">/nlp/users/johnhew/goldstandarddata</code>. Instead, I should run</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    goldpath=/nlp/users/johnhew/goldstandarddata
+    for i in $( ls $goldpath ); do echo $goldpath/$i; done
+</code></pre></div></div>
+
+<p>Note that the value $goldpath/$i merely concatenates the two parts of the filepath together with a <code class="language-plaintext highlighter-rouge">/</code> in the middle, since <em>bash only works with strings.</em> This accesses the files where they actually are, not pretending they’re in the current working directory.</p>
+
+<h4 id="iterating-over-a-sequence-or-otherwise">Iterating over a sequence or otherwise</h4>
+
+<p>What if you want to iterate over something like a sequence of numbers, or a pre-specified set of values?
+It’s not going to be a problem.</p>
+
+<p>To iterate over a squence of integers, first test the <code class="language-plaintext highlighter-rouge">seq</code> command as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    seq start_integer end_integer
+    seq 1 10
+</code></pre></div></div>
+
+<p>Now recall that bash works on strings, and will be willing to iterate over the string that <code class="language-plaintext highlighter-rouge">seq</code> produces as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    for i in `seq 1 10`; do echo $i; done
+</code></pre></div></div>
+
+<p>We’re introduced to new syntax, the backtick (``) notation. This means “execute the command within these bakticks and consider its output as part of the string that bash operates on”. It gets pretty meta.
+So, what would have happened had we omitted the backticks? the command</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    for i in seq 1 10; do echo $i; done
+</code></pre></div></div>
+
+<p>Prints out</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    seq
+    1
+    10
+</code></pre></div></div>
+
+<p>Which is hilarious, I think, but also the solution to our other question “how do I iterate over a sequence of pre-specified values”.</p>
+
+<h4 id="tips-on-for-iteration">Tips on <code class="language-plaintext highlighter-rouge">for</code> iteration</h4>
+<ul>
+  <li>
+    <p>You’ll frequently want to <em>just</em> iterate over files, or over directories, or over just all <code class="language-plaintext highlighter-rouge">.tsv</code> files. Modify the <code class="language-plaintext highlighter-rouge">ls</code> command to do this for you, as in the last two cases:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   for i in $( ls -d */ ); do echo "$i is a directory"; done
+   for i in $( ls *.tsv ); do echo "$i is a .tsv"; done
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>You can nest these loops, and life really gets fun then. For example, I use indirected directories when I’m storing over 1 million files. Thus, you could do something that looks like</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   for i in $( ls $root ); do
+     for j in $( ls $root/$i ); do
+       for k in $( ls $root/$i/$j ); do
+         cat $root/$i/$j/$k;
+       done
+     done
+   done
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="branching-if-conditionals">branching; <code class="language-plaintext highlighter-rouge">if</code> conditionals</h3>
+<p>Conditionals are very easy if you’d like to check something related to a file system. 
+To check for the existence of a file, the syntax is the following:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    if [ -f path_to_file ]; then echo "woo!"; fi
+</code></pre></div></div>
+
+<p>I usually use ifs in the middle of iterating over a directory, for example if you’re looping
+through directories and you want to check some kind of output if and only if the output file
+exists for that directory. (You know, because each directory has 1 experiment, and not all of
+the experiments have finished, but you’re really impatient.)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    for dirpath in $( ls path_to_dirs ); do if [ -f $dirpath/results.txt ]; then cat $dirpath/results.txt; fi; done
+</code></pre></div></div>
+
+<p>Note that you have to close the <code class="language-plaintext highlighter-rouge">if</code>s and <code class="language-plaintext highlighter-rouge">for</code>s properly, or bash gives you some well-meaning
+but useless syntax error.</p>
+
+<h3 id="while-loops"><code class="language-plaintext highlighter-rouge">while</code> loops</h3>
+
+<h3 id="path-and-file-manipulation--sed-advanced-grep">Path and file manipulation : <code class="language-plaintext highlighter-rouge">sed</code>, advanced <code class="language-plaintext highlighter-rouge">grep</code></h3>
+
+<h3 id="file-manipulation-cut-paste-column">File manipulation: <code class="language-plaintext highlighter-rouge">cut</code>, <code class="language-plaintext highlighter-rouge">paste</code>, <code class="language-plaintext highlighter-rouge">column</code></h3>
+
+<h3 id="file-mainpulation-sort-uniq">File mainpulation: <code class="language-plaintext highlighter-rouge">sort</code>, <code class="language-plaintext highlighter-rouge">uniq</code></h3>
+
+<h3 id="arithmetic-the-dark-arts">Arithmetic: the dark arts</h3>
+
+<h3 id="case-study-on-xargs--when-you-have-too-many-files">Case study on <code class="language-plaintext highlighter-rouge">xargs</code> : when you have too many files.</h3>
+
+<h3 id="case-study-on-efficiency-in-filesystems">Case study on efficiency in filesystems</h3>
+
+<h3 id="symbolic-links">Symbolic links</h3>
+<p>Symoblic links are great when you want to deal with nice pretty filepaths, but your data is in
+a shared location / on some mega disk somewhere else.
+They make it seem like there’s a path, right in your cozy directory of choice, to some
+aribtary other path.
+The general syntax is:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    ln -s ugly_target_filepath_to_type_once nice_filepath
+</code></pre></div></div>
+
+<p>Note that, to be very clear, <code class="language-plaintext highlighter-rouge">ugly_target_filepath_to_type_once</code> <em>already exists</em>,
+and you’re creating a ``file” at <code class="language-plaintext highlighter-rouge">nice_filepath</code> that will act like the ugly path.</p>
+
+<p>Some caveats: symbolic links aren’t quite the same as having the directory right there.
+Sometimes the behavior is the same. If you try the following:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    ls nice_filepath
+    ls ugly_target_filepath_to_type_once
+</code></pre></div></div>
+
+<p>you get the same thing!
+However, if you try the following, attempting to calculate the total number of bytes
+stored under each filepath,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    du -sh nice_filepath
+    du -sh ugly_target_filepath_to_type_once
+</code></pre></div></div>
+
+<p>the ugly filepath will give you the correct answer, but the nice filepath will give
+you 0.
+Instead, you should run</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    du -sh nice_filepath/
+</code></pre></div></div>
+
+<p>(yes, the trailing forward slash makes all the difference) in order to get the correct
+answer.
+Intuitively, this trailing slash forces bash to treat the symbolic link as its directory,
+not as the vacuous file that it actually is in your directory.</p>
+
+<p><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="CC-Attribution-ShareAlike 4.0" /></p>

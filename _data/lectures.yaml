@@ -26,3 +26,48 @@
       title: Chapter 2 "Regular Expressions, Text Normalization, and Edit Distance"
       authors: Jurafsky and Martin
       url: https://web.stanford.edu/~jurafsky/slp3/2.pdf
+-
+  date: 2021-01-28
+  title: Log-linear models and Perceptron
+  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b9b0bd3e-5f10-4144-8fcd-acbe014e1b1e
+  readings:   
+    - 
+      title: Chapter 2 "Linear Text Classification"
+      authors: Eisenstein
+      url: https://github.com/jacobeisenstein/gt-nlp-class/tree/master/notes
+
+-
+  date: 2021-02-02
+  title: N-gram Language Modeling
+  readings:   
+    - 
+      title: Chapter 3 "N-gram Language Models"
+      authors: Eisenstein
+      url: https://web.stanford.edu/~jurafsky/slp3/3.pdf
+
+-
+  date: 2021-02-04
+  title: Vector Spaces
+  readings:   
+    - 
+      title: Chapter 6.1 - 6.7 "Vector Semantics and Embeddings"
+      authors: Jurafsky and Martin
+      url: https://web.stanford.edu/~jurafsky/slp6/6.pdf
+
+-
+  date: 2021-02-09
+  title: Neural Word Vectors
+  readings:   
+    - 
+      title: Chapter 14 "Distributional and Distributed Semantics"
+      authors: Eisenstein
+      url: https://github.com/jacobeisenstein/gt-nlp-class/tree/master/notes
+
+-
+  date: 2021-02-11
+  title: Neural Word Vectors
+  readings:   
+    - 
+      title: Chapter 14 "Distributional and Distributed Semantics"
+      authors: Eisenstein
+      url: https://github.com/jacobeisenstein/gt-nlp-class/tree/master/notes
