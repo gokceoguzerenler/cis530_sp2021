@@ -102,12 +102,15 @@ Textbooks
 Grading
 : The grading for the course will consist of:
     * 60% for weekly homework assignments 
-    * 15% for quizzes about the readings
+    * 15% for quizzes about the readings 
     * 25% for the final project or 4 optional homeworks
 
-: Homework will be released two weeks before it is due. There will be 8 homeworks.
+: Homeworks and quizes are weighted equally within their respective categories.
+: Homework will be released two weeks before it is due. There will be 8 homeworks, roughly due weekly. Please see the Schedule
 : Final Project will be done in groups of 3 or more. If you cannot think of a topic, or are struggling to form a team, you can do 4 alternative homeworks.  
     
+
+
 Collaboration Policy
 : Unless otherwise noted, you are allowed to work in pairs on the homework assignment.  Both partners will receive the same grade.  The final projects will have larger groups. 
 
