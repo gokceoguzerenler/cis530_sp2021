@@ -45,6 +45,11 @@
       authors: Eisenstein
       url: https://web.stanford.edu/~jurafsky/slp3/3.pdf
 
+- 
+  date: 2021-02-02
+  title: Homework 1
+  type: homework
+
 -
   date: 2021-02-04
   title: Vector Spaces
@@ -54,6 +59,11 @@
       authors: Jurafsky and Martin
       url: https://web.stanford.edu/~jurafsky/slp6/6.pdf
 
+-
+  date: 2021-02-08
+  title: Quiz 1
+  type: quiz
+ 
 -
   date: 2021-02-09
   title: Neural Word Vectors
@@ -71,3 +81,68 @@
       title: Chapter 14 "Distributional and Distributed Semantics"
       authors: Eisenstein
       url: https://github.com/jacobeisenstein/gt-nlp-class/tree/master/notes
+
+- 
+  date: 2021-02-12
+  title: Homework 2
+  type: homework
+- 
+  date: 2021-02-19
+  title: Homework 3
+  type: homework
+-
+  date: 2021-02-22
+  title: Quiz 2
+  type: quiz
+- 
+  date: 2021-02-26
+  title: Homework 4
+  type: homework
+- 
+  date: 2021-03-5
+  title: Homework 5
+  type: homework
+-
+  date: 2021-03-8
+  title: Quiz 3
+  type: quiz
+- 
+  date: 2021-03-17
+  title: Homework 6
+  type: homework
+-
+  date: 2021-03-8
+  title: Quiz 4
+  type: quiz
+- 
+  date: 2021-03-24
+  title: Homework 7
+  type: homework
+- 
+  date: 2021-04-2
+  title: Homework 8
+  type: homework
+-
+  date: 2021-04-5
+  title: Quiz 5
+  type: quiz
+- 
+  date: 2021-04-9
+  title: Homework 9 or Project Milestone 1
+  type: homework
+- 
+  date: 2021-04-16
+  title: Homework 10 or Project Milestone 2
+  type: homework
+-
+  date: 2021-03-19
+  title: Quiz 6
+  type: quiz
+- 
+  date: 2021-04-23
+  title: Homework 11 or Project Milestone 3
+  type: homework
+- 
+  date: 2021-04-30
+  title: Homework 12 or Project Final
+  type: homework
