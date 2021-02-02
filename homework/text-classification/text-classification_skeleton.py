@@ -1,7 +1,7 @@
 #############################################################
 ## ASSIGNMENT 2 CODE SKELETON
 ## RELEASED: 2/2/2020
-## DUE: 2/9/2020
+## DUE: 2/12/2020
 ## DESCRIPTION: In this assignment, you will explore the
 ## text classification problem of identifying complex words.
 ## We have provided the following skeleton for your code,
