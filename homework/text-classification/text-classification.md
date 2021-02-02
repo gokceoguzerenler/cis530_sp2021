@@ -94,7 +94,7 @@ We will provide you with training and development data that has been manually la
 
 <div class="alert alert-info" markdown="1">
 Here are the materials that you should download for this assignment:
-* [Skeleton code](text-classification_skeleton.py) - this provides some of the functions that you should implement.
+* [Skeleton code](hw2_skeleton.py) - this provides some of the functions that you should implement.
 * [Data sets](data.tar.gz) - this is a tarball with the training/dev/test sets. 
 * [Unigram counts](http://www.cis.upenn.edu/~cis530/18sp/data/ngram_counts.txt.gz) from the [Google N-gram corpus](https://research.googleblog.com/2006/08/all-our-n-gram-are-belong-to-you.html).
 </div>
