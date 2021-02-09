@@ -39,6 +39,7 @@
 -
   date: 2021-02-02
   title: N-gram Language Modeling
+  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=26f1e6fc-fc55-45c2-bcff-acc3016d107e
   readings:   
     - 
       title: Chapter 3 "N-gram Language Models"
@@ -53,6 +54,7 @@
 -
   date: 2021-02-04
   title: Vector Spaces
+  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=01d314af-6fa1-4610-9cf8-acc501451d49
   readings:   
     - 
       title: Chapter 6.1 - 6.7 "Vector Semantics and Embeddings"
@@ -67,6 +69,7 @@
 -
   date: 2021-02-09
   title: Neural Word Vectors
+  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c65429f5-8e7f-45bb-9741-acca01512eb4
   readings:   
     - 
       title: Chapter 14 "Distributional and Distributed Semantics"
