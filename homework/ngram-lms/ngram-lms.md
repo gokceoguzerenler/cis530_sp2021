@@ -314,8 +314,6 @@ Feel free to extend the `NgramModel` or `NgramModelWithInterpolation` when creat
 
 In your report, describe the parameters of your final leaderboard model and any experimentation you did before settling on it.
 
-In next week's assignment, you will use a recurrent neural network on the same dataset in order to compare performance.
-
 ## Deliverables
 <div class="alert alert-warning" markdown="1">
 Here are the deliverables that you will need to submit:
