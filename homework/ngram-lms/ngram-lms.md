@@ -82,7 +82,7 @@ This assignment has several deliverables:
 
 ## Part 0: Generating N-Grams
 
-Write a function `ngrams(n, text)` that produces a list of all n-grams of the specified size from the input text. Each n-gram should consist of a 2-element tuple `(context, char)`, where the context is itself an n-length string comprised of the $n$ characters preceding the current character. The sentence should be padded with $n$ ~ characters at the beginning (we've provided you with `start_pad(n)` for this purpose). If $n=0$, all contexts should be empty strings. You may assume that $n\ge0$.
+Write a function `ngrams(c, text)` that produces a list of all n-grams of that use c elements of context from the input text. Each n-gram should consist of a 2-element tuple `(context, char)`, where the context is itself a c-length string comprised of the $c$ characters preceding the current character. If c=1, then produce bigrams, if c=2, trigrams.  The sentence should be padded with $c$ ~ characters at the beginning (we've provided you with `start_pad(c)` for this purpose). If $c=0$, all contexts should be empty strings. You may assume that $c\ge0$.
 
 ```python
 >>> ngrams(1, 'abc')
@@ -92,15 +92,15 @@ Write a function `ngrams(n, text)` that produces a list of all n-grams of the sp
 [('~~', 'a'), ('~a', 'b'), ('ab', 'c')]
 ```
 
-We've also given you the function `create_ngram_model(model_class, path, n, k)` that will create and return an n-gram model trained on the entire file path provided and `create_ngram_model_lines(model_class, path, n, k)` that will create and return an n-gram model trained line-by-line on the file path provided. You should use the first for the Shakespeare file and the second for the city name files.
+We've also given you the function `create_ngram_model(model_class, path, c, k)` that will create and return an n-gram model trained on the entire file path provided and `create_ngram_model_lines(model_class, path, c, k)` that will create and return an n-gram model trained line-by-line on the file path provided. You should use the first for the Shakespeare file and the second for the city name files.
 
 ## Part 1: Creating an N-Gram Model
 
 In this section, you will build a simple n-gram language model that can be used to generate random text resembling a source document. Your use of external code should be limited to built-in Python modules, which excludes, for example, NumPy and NLTK.
 
-1. In the `NgramModel` class, write an initialization method `__init__(self, n, k)` which stores the order $n$ of the model and initializes any necessary internal variables. Then write a method `get_vocab(self)` that returns the vocab (this is the set of all characters used by this model).
+1. In the `NgramModel` class, write an initialization method `__init__(self, c, k)` which stores the context length $c$ of the model and initializes any necessary internal variables. Then write a method `get_vocab(self)` that returns the vocab (this is the set of all characters used by this model).
 
-2. Write a method `update(self, text)` which computes the n-grams for the input sentence and updates the internal counts. Also write a method `prob(self, context, char)` which accepts an n-length string representing a context and a character, and returns the probability of that character occuring, given the preceding context. If you encounter a novel `context`, the probability of any given `char` should be $1/V$ where $V$ is the size of the vocab.
+2. Write a method `update(self, text)` which computes the n-grams for the input sentence and updates the internal counts. Also write a method `prob(self, context, char)` which accepts an c-length string representing a context and a character, and returns the probability of that character occuring, given the preceding context. If you encounter a novel `context`, the probability of any given `char` should be $1/V$ where $V$ is the size of the vocab.
 
     ```python
     >>> m = NgramModel(1, 0)
@@ -133,7 +133,7 @@ In this section, you will build a simple n-gram language model that can be used 
     ['a', 'c', 'c', 'a', 'b', 'b', 'b', 'c', 'a', 'a', 'c', 'b', 'c', 'a', 'b', 'b', 'a', 'd', 'd', 'a', 'a', 'b', 'd', 'b', 'a']
     ```
 
-4. In the `NgramModel` class, write a method `random_text(self, length)` which returns a string of characters chosen at random using the `random_char(self, context)` method. Your starting context should always be $n$ ~ characters, and the context should be updated as characters are generated. If $n=0$, your context should always be the empty string. You should continue generating characters until you've produced the specified number of random characters, then return the full string.
+4. In the `NgramModel` class, write a method `random_text(self, length)` which returns a string of characters chosen at random using the `random_char(self, context)` method. Your starting context should always be $c$ ~ characters, and the context should be updated as characters are generated. If $c=0$, your context should always be the empty string. You should continue generating characters until you've produced the specified number of random characters, then return the full string.
 
     ```python
     >>> m = NgramModel(1, 0)
@@ -251,7 +251,7 @@ where $\lambda_1 + \lambda_2 + \lambda_3 = 1$.
 
 We've provided you with another class definition `NgramModelWithInterpolation` that extends `NgramModel` for you to implement interpolation. If you've written your code robustly, you should only need to override the `get_vocab(self)`, `update(self, text)`, and `prob(self, context, char)` methods, along with the initializer.
 
-The value of $n$ passed into `__init__(self, n, k)` is the highest order n-gram to be considered by the model (e.g. $n=2$ will consider 3 different length n-grams). Add-k smoothing should take place only when calculating the individual order n-gram probabilities, not when calculating the overall interpolation probability.
+The value of $c$ passed into `__init__(self, c, k)` specifies the context length of the highest order n-gram model to be considered by the model (e.g. $c=2$, indicating trigrams, will consider 3 different length n-grams). Add-k smoothing should take place only when calculating the individual order n-gram probabilities, not when calculating the overall interpolation probability.
 
 By default set the lambdas to be equal weights, but you should also write a helper function that can be called to overwrite this default. Setting the lambdas in the helper function can either be done heuristically or by using a development set, but in the example code below, we've used the default.
 
@@ -280,19 +280,19 @@ In your report, experiment with a few different lambdas and values of k and disc
 
 ## Part 3: Text Classification using N-Grams
 
-Language models can be applied to text classification. If we want to classify a text $$D$$ into a category $$c \in C={c_1, ..., c_N}$$. We can pick the category $$c$$ that has the largest posterior probability given the text. That is,
+Language models can be applied to text classification. If we want to classify a text $$D$$ into a category $$y \in Y={y_1, ..., y_N}$$. We can pick the category $$y$$ that has the largest posterior probability given the text. That is,
 
-$$ c^* = arg max_{c \in C} P(c|D) $$
+$$ y^* = arg max_{y \in C} P(y|D) $$
 
 Using Bayes rule, this can be rewritten as:
 
-$$ c^* = arg max_{c \in C} P(D|c) P(c)$$
+$$ y^* = arg max_{y \in Y} P(D|y) P(y)$$
 
-If we assume that all classes are equally likely, then we can just drop the $$P(c)$$ term:
+If we assume that all classes are equally likely, then we can just drop the $$P(y)$$ term:
 
-$$ = arg max_{c \in C} P(D|c)$$
+$$ = arg max_{y \in Y} P(D|y)$$
 
-Here $$P(D \mid c)$$ is the likelihood of $$D$$ under category $$c$$, which can be computed by training language models for all texts associated with category $$c$$. This technique of text classification is drawn from [literature on authorship identification](http://www.aclweb.org/anthology/E/E03/E03-1053.pdf), where the approach is to learn a separate language model for each author, by training on a data set from that author. Then, to categorize a new text D, they use each language model to calculate the likelihood of D under that model, and pick the  category that assigns the highest probability to D.
+Here $$P(D \mid y)$$ is the likelihood of $$D$$ under category $$y$$, which can be computed by training language models for all texts associated with category $$y$$. This technique of text classification is drawn from [literature on authorship identification](http://www.aclweb.org/anthology/E/E03/E03-1053.pdf), where the approach is to learn a separate language model for each author, by training on a data set from that author. Then, to categorize a new text D, they use each language model to calculate the likelihood of D under that model, and pick the  category that assigns the highest probability to D.
 
 Try it! We have provided you training and validation datsets consisting of the names of cities. The task is to predict the country a city is in. The following countries are including in the dataset.
 

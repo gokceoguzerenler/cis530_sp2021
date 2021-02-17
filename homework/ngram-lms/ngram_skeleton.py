@@ -1,4 +1,7 @@
 import math, random
+#
+# UPDATED : 2/16/21
+#
 
 ################################################################################
 # Part 0: Utility Functions
@@ -6,28 +9,28 @@ import math, random
 
 COUNTRY_CODES = ['af', 'cn', 'de', 'fi', 'fr', 'in', 'ir', 'pk', 'za']
 
-def start_pad(n):
+def start_pad(c):
     ''' Returns a padding string of length n to append to the front of text
         as a pre-processing step to building n-grams '''
-    return '~' * n
+    return '~' * c
 
-def ngrams(n, text):
+def ngrams(c, text):
     ''' Returns the ngrams of the text as tuples where the first element is
         the length-n context and the second is the character '''
     pass
 
-def create_ngram_model(model_class, path, n=2, k=0):
+def create_ngram_model(model_class, path, c=2, k=0):
     ''' Creates and returns a new n-gram model trained on the city names
         found in the path file '''
-    model = model_class(n, k)
+    model = model_class(c, k)
     with open(path, encoding='utf-8', errors='ignore') as f:
         model.update(f.read())
     return model
 
-def create_ngram_model_lines(model_class, path, n=2, k=0):
+def create_ngram_model_lines(model_class, path, c=2, k=0):
     ''' Creates and returns a new n-gram model trained on the city names
         found in the path file '''
-    model = model_class(n, k)
+    model = model_class(c, k)
     with open(path, encoding='utf-8', errors='ignore') as f:
         for line in f:
             model.update(line.strip())
@@ -40,7 +43,7 @@ def create_ngram_model_lines(model_class, path, n=2, k=0):
 class NgramModel(object):
     ''' A basic n-gram model using add-k smoothing '''
 
-    def __init__(self, n, k):
+    def __init__(self, c, k):
         pass
 
     def get_vocab(self):
@@ -77,7 +80,7 @@ class NgramModel(object):
 class NgramModelWithInterpolation(NgramModel):
     ''' An n-gram model with interpolation '''
 
-    def __init__(self, n, k):
+    def __init__(self, c, k):
         pass
 
     def get_vocab(self):
