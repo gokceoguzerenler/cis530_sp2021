@@ -92,7 +92,7 @@
   type: homework
 
 - 
-  date: 2021-12-16
+  date: 2021-02-16
   title: Introduction to Neural Networks 
   type: lecture
   readings:
@@ -101,7 +101,7 @@
       authors: Eisenstein
       url: https://github.com/jacobeisenstein/gt-nlp-class/tree/master/notes
 - 
-  date: 2021-12-18
+  date: 2021-02-18
   title: Early Neural Networks Language Models
   type: lecture
   readings:
@@ -109,6 +109,10 @@
       title: Chapter 7 "Neural Networks and Neural Language Models"
       authors: Jurafsky and Martin
       url: https://web.stanford.edu/~jurafsky/slp3/7.pdf
+- 
+  date: 2021-02-23
+  title: No Lecture
+  type: lecture
 -
   date: 2021-02-19
   title: Homework 3
@@ -123,7 +127,7 @@
   type: homework
 - 
   date: 2021-03-5
-  title: Homework 5
+  title: Homework 5 Cancelled. No homework due.
   type: homework
 -
   date: 2021-03-8
