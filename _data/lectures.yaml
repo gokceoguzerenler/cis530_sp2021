@@ -95,6 +95,7 @@
   date: 2021-02-16
   title: Introduction to Neural Networks 
   type: lecture
+  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e2530dd0-16c3-4f8f-9a3c-acd1014dbd49
   readings:
     -
       title: Chapter 3 "Nonlinear Classification"
@@ -104,6 +105,7 @@
   date: 2021-02-18
   title: Early Neural Networks Language Models
   type: lecture
+  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1e6f70a6-6e3f-4c23-8c9b-acd30149499e
   readings:
     -
       title: Chapter 7 "Neural Networks and Neural Language Models"
