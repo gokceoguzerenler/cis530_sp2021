@@ -124,6 +124,11 @@
   title: Quiz 2
   type: quiz
 - 
+  data: 2021-02-25
+  title: Recurrent Neural Networks
+  type: lecture
+  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=20461ac0-a4af-44fb-91f3-acda016058f4
+-
   date: 2021-02-26
   title: Homework 4
   type: homework
