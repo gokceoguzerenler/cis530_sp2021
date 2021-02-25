@@ -112,10 +112,6 @@
       authors: Jurafsky and Martin
       url: https://web.stanford.edu/~jurafsky/slp3/7.pdf
 - 
-  date: 2021-02-23
-  title: No Lecture
-  type: lecture
--
   date: 2021-02-19
   title: Homework 3
   type: homework
@@ -124,6 +120,10 @@
   title: Quiz 2
   type: quiz
 - 
+  date: 2021-02-23
+  title: No Lecture
+  type: lecture
+-
   data: 2021-02-25
   title: Recurrent Neural Networks
   type: lecture
