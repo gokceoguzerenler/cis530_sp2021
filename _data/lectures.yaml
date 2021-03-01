@@ -95,7 +95,6 @@
   date: 2021-02-16
   title: Introduction to Neural Networks 
   type: lecture
-  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e2530dd0-16c3-4f8f-9a3c-acd1014dbd49
   readings:
     -
       title: Chapter 3 "Nonlinear Classification"
@@ -105,13 +104,16 @@
   date: 2021-02-18
   title: Early Neural Networks Language Models
   type: lecture
-  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1e6f70a6-6e3f-4c23-8c9b-acd30149499e
   readings:
     -
       title: Chapter 7 "Neural Networks and Neural Language Models"
       authors: Jurafsky and Martin
       url: https://web.stanford.edu/~jurafsky/slp3/7.pdf
 - 
+  date: 2021-02-23
+  title: No Lecture
+  type: lecture
+-
   date: 2021-02-19
   title: Homework 3
   type: homework
@@ -120,19 +122,28 @@
   title: Quiz 2
   type: quiz
 - 
-  date: 2021-02-23
-  title: No Lecture
-  type: lecture
--
-  date: 2021-02-25
-  title: Recurrent Neural Networks
-  type: lecture
-  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=20461ac0-a4af-44fb-91f3-acda016058f4
--
   date: 2021-02-26
   title: Homework 4
   type: homework
-- 
+-
+  date: 2021-03-02
+  title: Part of Speech Tagging and HMMs
+  type: lecture
+  readings:
+    - 
+      title: Chapter 7 "Part of Speech Tagging"
+      authors: Jurafsky and Martin
+      url: https://web.stanford.edu/~jurafsky/slp3/7.pdf
+-
+  date: 2021-03-04
+  title: Feaure Rich POS tagging and Neural Tagging
+  type: lecture
+  readings:
+    - 
+      title: Chapter 7.5 and 7.6
+      authors: Eisenstein
+      url: https://github.com/jacobeisenstein/gt-nlp-class/tree/master/notes
+-
   date: 2021-03-5
   title: Homework 5 Cancelled. No homework due.
   type: homework
