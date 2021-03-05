@@ -2,8 +2,8 @@
 layout: default
 title: Homework 6 - Biglab, local  setup
 active_tab: homework
-release_date: 2019-02-26
-due_date: 2017-03-12T23:59:00EST
+release_date: 2021-03-05
+due_date: 2021-03-16T23:59:00EST
 
 ---
 
