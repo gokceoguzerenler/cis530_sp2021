@@ -148,11 +148,20 @@
   title: Homework 5 Cancelled. No homework due.
   type: homework
 -
-  date: 2021-03-8
+  date: 2021-03-09
+  title: Constituency Grammars
+  type: lecture
+  readings:
+    - 
+      title: Chapter 12 "Constituency Grammars"
+      authors: Jurafsky and Martin
+      url: https://web.stanford.edu/~jurafsky/slp3/12.pdf
+-
+  date: 2021-03-15
   title: Quiz 3
   type: quiz
 - 
-  date: 2021-03-17
+  date: 2021-03-19
   title: Homework 6
   type: homework
 -
@@ -161,7 +170,7 @@
   type: quiz
 - 
   date: 2021-03-24
-  title: Homework 7
+  title: Homework 7 Cancelled. No Homework Due
   type: homework
 - 
   date: 2021-04-2

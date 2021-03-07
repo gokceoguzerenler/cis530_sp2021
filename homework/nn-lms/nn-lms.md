@@ -168,6 +168,20 @@ Here are the deliverables that you will need to submit:
 * `labels.txt` predictions for leaderboard.
 </div>
 
+## Please include the following in your report
+For Part 2:
+* A description of what you tried, and the final model you settled on
+* A table with validation results for the models you tried
+* A plot of validation accuracy as your best model is training
+* An error analysis, including a confusion matrix and a dicussion of what is happening.
+
+For Part 3:
+* A description of the text you are training on
+* A description of the model you are running
+* A table of example generations
+* Perplexity results on two types of held out data: (a) similar to what you trained on and (b) dissimilar to what you trained on
+* A comparison of your model's behavior to an n-gram language model.
+
 ## FAQs
 Before submitting, please make sure to review the checklist on Piazza!
 
