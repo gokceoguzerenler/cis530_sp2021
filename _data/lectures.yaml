@@ -194,26 +194,26 @@
   date: 2021-04-2
   title: Homework 8
   type: homework
+- 
+  date: 2021-04-9
+  title: Homework Option 1 or Project Milestone 1
+  type: homework
 -
   date: 2021-04-12
   title: Quiz 5
   type: quiz
 - 
-  date: 2021-04-9
-  title: Homework Option 1 or Project Milestone 1
-  type: homework
-- 
   date: 2021-04-16
   title: Homework Option 2 or Project Milestone 2
+  type: homework
+- 
+  date: 2021-04-23
+  title: Homework Option 3 or Project Milestone 3
   type: homework
 -
   date: 2021-04-26
   title: Quiz 6
   type: quiz
-- 
-  date: 2021-04-23
-  title: Homework Option 3 or Project Milestone 3
-  type: homework
 - 
   date: 2021-04-30
   title: Project Final
