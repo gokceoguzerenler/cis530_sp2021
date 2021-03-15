@@ -183,38 +183,34 @@
   title: Homework 6
   type: homework
 -
-  date: 2021-03-8
+  date: 2021-03-29
   title: Quiz 4
   type: quiz
-- 
-  date: 2021-03-24
-  title: Homework 7 Cancelled. No Homework Due
-  type: homework
 - 
   date: 2021-04-2
   title: Homework 8
   type: homework
 -
-  date: 2021-04-5
+  date: 2021-04-12
   title: Quiz 5
   type: quiz
 - 
   date: 2021-04-9
-  title: Homework 9 or Project Milestone 1
+  title: Homework Option 1 or Project Milestone 1
   type: homework
 - 
   date: 2021-04-16
-  title: Homework 10 or Project Milestone 2
+  title: Homework Option 2 or Project Milestone 2
   type: homework
 -
-  date: 2021-03-19
+  date: 2021-04-26
   title: Quiz 6
   type: quiz
 - 
   date: 2021-04-23
-  title: Homework 11 or Project Milestone 3
+  title: Homework Option 3 or Project Milestone 3
   type: homework
 - 
   date: 2021-04-30
-  title: Homework 12 or Project Final
+  title: Project Final
   type: homework
