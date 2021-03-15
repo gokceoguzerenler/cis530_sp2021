@@ -5,25 +5,25 @@ caption: Don't Panic
 img_link: https://xkcd.com/1658/   
 title: The Term Project
 active_tab: homework
-release_date: 2020-03-23
-due_date: 2020-04-29T11:59:00EST
-attribution: This assignment was developed by the CIS 530 course staff.
+release_date: 2021-03-15
+due_date: 2021-04-29T11:59:00EST
+attribution: This assignment was developed by the CIS 530 course staff in 2020
 deliverables:
     -
       description: Deadline to decide on term project versus weekly homework option   
-      due_date: 2020-03-25T11:59:00EST
+      due_date: 2021-03-26T11:59:00EST
     -
       description: Milestone 1 - Submit a formal project definition and a literature review
-      due_date: 2020-04-08T11:59:00EST
+      due_date: 2021-04-09T11:59:00EST
     -
       description: Milestone 2 - Collect your data, and write an evaluation script and a simple baseline
-      due_date: 2020-04-15T11:59:00EST
+      due_date: 2021-04-16T11:59:00EST
     -
       description: Milestone 3 - Implement a published baseline. Prepare a draft of your final project presentation
-      due_date: 2020-04-22T11:59:00EST
+      due_date: 2021-04-23T11:59:00EST
     -
-      description: Milestone 4 - Finish all your extensions to the public baseline, and submit your final report
-      due_date: 2019-04-29T11:59:00EST
+      description: Milestone 4 - Finish all extensions to the public baseline, submit final report, final presentation, and schedule a presention
+      due_date: 2021-04-30T11:59:00EST
 
 ---
 
@@ -39,45 +39,36 @@ Warning: this assignment is out of date.  It may still need to be updated for th
 
 
 <div class="alert alert-warning" markdown="1">
-For the term project part of your grade, which is 25% of your overall grade, you may opt to do either the term project, or you may do a series of 4 weekly homework assignments.  
+For the term project part of your grade, which is 25% of your overall grade, you may opt to do either the term project, or you may do an extra three homework assignments.  
 </div>
 
 Homework Option
 ============
 
-We are creating a set of 4 additional weekly homework assignments.   They will have the same deadlines as the project milestones.  You may do the homework assignments individually or in pairs.  Because the homework assignments are new, some of them might not have autograders.  They will instead be graded based on the leaderboard and on your report.  
-
+You may do the homework assignments individually or in pairs. These homeworks will be graded based largely on your report and will be open ended than previous assignments.  
 
 We plan the following assignments for the homework option:
-* [HW9: Classifying Depression](homework/mentalhealth/mentalhealth.html) (for this assignment you'll need to complete a short IRB training in order to get access to the data)
-* [HW10: Neural Machine Translation](homework/nmt/nmt.html)
-* [HW11: BERT](homework/bert/bert.html)
-* [HW12: Perspectives Detection](homework/perspectives/perspectives.html)
-
-
+* Neural Machine Translation. 
+* Applying Large Scale Pretrained Transformers for classification
+* Text Generation with GPT-2. 
 
 
 Project Option
 ============
 
-The project is a team exercise.  The minimum team size is 4, and the max team size is 6.  You may reach out to the instructor on gradescope for special circumstances about team size.  
+The minimum team size is 3, and the max team size is 6.  You may reach out to the instructors on piazza for special circumstances about team size. 
 
 Your project will be a self-designed multi-week team-based effort. Your final project will consist of the following components:
 
 1. A formal definition of the problem and a motivation for while it is an interesting challenge for natural language processing. A literature review of past approaches to the problem.
 1. A commented implementation of the simplest possible solution to the problem.  For instance, this could be a majority class baseline or a random baseline. 
-1. A commented implementation of a baseline published in the literature, along with
-   skeleton code obtained by removing the parts that students should implement.
-1. One extension per team member that attempts to improve on the baseline, along
-   with a brief (one- to three-paragraph) accompanying write-up for each extension
-   describing the general approach and whether it worked.
-1. A evaluation script that can be used to score
-   submissions like on the class leaderboard. The output of any model
-   implementations should be gradeable with this program.
+1. A commented implementation of a baseline published in the literature, along with skeleton code obtained by removing the parts that students should implement.
+1. One extension per team member that attempts to improve on the baseline, along with a brief (one- to three-paragraph) accompanying write-up for each extension describing the general approach and whether it worked.
+1. A evaluation script that can be used to score submissions like on the class leaderboard. The output of any model implementations should be gradeable with this program.
+1. A final report summarizing your results.
+1. A short 5 minute presentation to Mark about your project, with a 2-5 minutes for questions.
 
-Term project is split into weekly deliverables.  You don't have to wait to start working on each part of the project.  We encourage you to begin work early, so that you have a polished final product.
-
-
+Term project is split into 4 deliverables, where the first three are worth 5% each, and the final report and presentation are worth 10%.  You don't have to wait to start working on each part of the project.  We encourage you to begin work early, so that you have a polished final product.
 
 <div class="alert alert-warning" markdown="1">
 If you don't have an idea about what you'd like to do for the project, or if you're having trouble coordinating a team, we recommend the homework option.
@@ -120,8 +111,7 @@ Here's a provisional list of the deliverables that you'll need to submit at the 
 
 # Before you begin
 
-If you want to do the project option, you must first declare your intent to do the project by March 25.  By March 25 you must form a team.  After March 25 and before Milestone 1, you should <a href="https://ccb.youcanbook.me">schedule a meeting with the course instructor</a> to discuss your project idea and make sure it is appopriate in scope.
-
+If you want to do the project option, you must first declare your intent to do the project and inform us of your team by March 26 via Gradescope. After March 26 and before Milestone 1, you should book a time to discuss your project idea with Mark or one of the TAs to make sure it is appopriate in scope. After March 26th, we will open slots for this purpose. 
 
 # Milestone 1
 
@@ -134,7 +124,7 @@ For Milestone 1, you'll need to create a writeup which includes:
 1. What evaluation metrics could use to score system outputs 
 1. What type of data you will need to evaluate, and how much data is available 
 
-For your literature review, you should read 3-5 research papers that address the problem that you are working on.  You should write a 1-2 paragraph summary of each paper, desribing the approaches that used and how well the approaches worked.  
+For your literature review, you should read 3-5 research papers that address the problem that you are working on.  You should write a 1-2 paragraph summary of each paper, desribing the approaches that used and how well the approaches worked. This milestone is worth 5% of the grade. 
 
 <!--
 ## Project Ideas
@@ -183,9 +173,7 @@ For Milestone 2, you will need to:
 2. Write an evaluation script
 3. Write a simple baseline (for instance, a majority class baseline)
 
-
-We will also assign a course staff member to be your mentor.  
-You should sign up for a short, weekly one-on-one meeting with your mentor to give them a progress report on your project.
+This milestone is worth 5% of the grade.
 
 ## Collect your data
 
@@ -246,7 +234,7 @@ You may also want to cover topics like this:
 
 
 
-For Milestone 4, you'll need to implement several extensions beyond this published baseline.  These should be different experiments that you run to try to improve its performance.  The number of extension that you'll implement depends on number of members of your group.  If you have 4 team members, you should implement 2 extensions.  If you have 5, then 3 extensions.  If you have 6, then 4 extensions. 
+For Milestone 4, you'll need to implement several extensions beyond this published baseline.  These should be different experiments that you run to try to improve its performance.  The number of extension that you'll implement depends on number of members of your group.  If you have 3-4 team members, you should implement 2 extensions.  If you have 5-6, then 3 extensions. 
 
 
 
@@ -256,7 +244,7 @@ For Milestone 4, you'll need to implement several extensions beyond this publish
 * You should submit your code for the baseline system.   You should also submit a README file explaining how to run it, and reporting its performance on your dev and test set, according to your evaluation metric. 
 * A link to your draft slides for your final presentation.
 
-
+This milestone is worth 5% of the grade.
 
 <a name="milestone-4"></a>
 # Milestone 4
@@ -300,7 +288,8 @@ You should turn  the following items:
    * data/ - a subdirectory containing the training/dev/test splits that you use.  If your data is too large to submit, then you can include a README file in this subdirectory that explains how to download your data.
    * code/ - a subdirectory containing all code that you developed for your project, including the baseline and extensions, and your evaluation scripts.  This should include a README that gives a step by step walk thorugh of how to run your code, including an example of the command lines to run to reproduce the results that you report. 
    * output/ - a subdirectory containing your model's predictions on the test set, along with the gold labels.  This should also include a README that shows the command line on how to run your evaluation script on the output, and example of what scores the script returns.
-* Schedule a time before May 7 to present your results to CCB: [https://ccb.youcanbook.me](https://ccb.youcanbook.me)
+* Schedule a time to present your results to Mark
 
+This final milestone is worth 10%.
 
 You've reached the end.  Great job!

@@ -52,11 +52,7 @@ Grading updates:
 [{{page.title}}](http://markyatskar.com/cis530_sp2021/{{page.url}}) has been released.
 {% if page.deliverables %}
 The assignment has multiple deliverables.
-<ul>
-{% for deliverable in page.deliverables %}
-<li>{{ deliverable.due_date | date: "%b %-d, %Y" }} - {{deliverable.description}}.</li>
-{% endfor %}
-</ul>
+
 {% else %}
 It is due before {{ page.due_date | date: "%I:%M%p" }} on {{ page.due_date | date: "%A, %B %-d, %Y" }}.
 {% endif %}
@@ -103,7 +99,7 @@ Grading
 : The grading for the course will consist of:
     * 60% for weekly homework assignments 
     * 15% for quizzes about the readings 
-    * 25% for the final project or 4 optional homeworks
+    * 25% for the final project or 3 optional homeworks
 
 : Homeworks and quizes are weighted equally within their respective categories.
 : Homework will be released two weeks before it is due. There will be 8 homeworks, roughly due weekly. Please see the Schedule

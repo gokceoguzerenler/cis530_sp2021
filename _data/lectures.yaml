@@ -160,6 +160,24 @@
   date: 2021-03-15
   title: Quiz 3
   type: quiz
+-
+  date: 2021-03-16
+  title: Dependency Parsing
+  type: lecture
+  readings:
+    - 
+      title: Chapter 14 "Dependancy Parsing"
+      authors: Jurafsky and Martin
+      url: https://web.stanford.edu/~jurafsky/slp3/14.pdf
+-
+  date: 2021-03-18
+  title: Information Extraction
+  type: lecture
+  readings:
+    - 
+      title: Chapter 17 "Information Extraction"
+      authors: Jurafsky and Martin
+      url: https://web.stanford.edu/~jurafsky/slp3/14.pdf
 - 
   date: 2021-03-19
   title: Homework 6
