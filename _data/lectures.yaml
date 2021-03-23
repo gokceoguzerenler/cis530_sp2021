@@ -197,6 +197,15 @@
   date: 2021-03-19
   title: Homework 6
   type: homework
+-
+  date: 2021-03-23
+  title: Information Extraction + Semantic Role Labeling
+  type: lecture
+  readings:
+    - 
+      title: Chapter 13
+      authors: Eisenstein
+      url: https://github.com/jacobeisenstein/gt-nlp-class/tree/master/notes
 - 
   date: 2021-03-26
   title: Declare Project or Homework option
