@@ -34,7 +34,8 @@ Your task is to implement your own named entity recognizer. You will implement a
 
 As with nearly all NLP tasks, you will find that the two big points of variability in NER are (a) the features, and (b) the learning algorithm, with the features arguably being the more important of the two. The point of this assignment is for you to think about and experiment with both of these. Are there interesting features you can use? What latent signal might be important for NER? What have you learned in the class so far that can be brought to bear?
 
-Get a headstart on common NER features by looking at Figure 17.5 in the textbook, and reading [Chapter 17.1](https://web.stanford.edu/~jurafsky/slp3/old_oct19/17.pdf), from an older edition of the Text Book. 
+Get a headstart on common NER features by looking at Figure 17.5 in the textbook, and reading [Chapter 17.1](https://web.stanford.edu/~jurafsky/slp3/old_oct19/17.pdf), from an older edition of the textbook (use the link). 
+
 
 <img src="features_for_NER.png" alt="Typical features for a feature-based NER system." class="img-responsive" />
 
