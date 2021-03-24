@@ -3,10 +3,10 @@ layout: default
 img: bobbytables.png
 caption: If word contains '); label as PER
 img_link: https://xkcd.com/327/   
-title: Homework 7 - Named Entity Recognition
+title: Homework 8 - Named Entity Recognition
 active_tab: homework
-release_date: 2020-02-26
-due_date: 2020-03-25T11:59:59EDT
+release_date: 2021-03-24
+due_date: 2021-04-2T11:59:59EDT
 attribution: This assignment is inspired by a similar assignment from Michael Elhadad's [NLP class](https://www.cs.bgu.ac.il/~elhadad/nlp17.html) at Ben-Gurion University of the Negev. Stephen Mayhew developed this homework assignment for UPenn's CIS 530 class in Spring 2018.
 ---
 
@@ -24,13 +24,13 @@ Warning: this assignment is out of date.  It may still need to be updated for th
 This assignment is due before {{ page.due_date | date: "%I:%M%p" }} on {{ page.due_date | date: "%A, %B %-d, %Y" }}.
 </div>
 
-Named Entity Recognition <span class="text-muted">: Assignment 7</span>
+Named Entity Recognition <span class="text-muted">: Assignment 8</span>
 =============================================================
 
 
 Named Entity Recognition is the task of finding and classifying named entities in text. This task is often considered a sequence tagging task, like part of speech tagging, where words form a sequence through time, and each word is given a tag. Unlike part of speech tagging however, NER usually uses a relatively small number of tags, where the vast majority of words are tagged with the 'non-entity' tag, or O tag.
 
-Your task is to implement your own named entity recognizer. Relax, you'll find it's a lot easier than it sounds, and it should be very satisfying to accomplish this. You will implement an entity tagger using scikit learn, filling out the stub that we give you. There will be a leaderboard.
+Your task is to implement your own named entity recognizer. You will implement an entity tagger using scikit learn, filling out the stub that we give you. There will be a leaderboard.
 
 As with nearly all NLP tasks, you will find that the two big points of variability in NER are (a) the features, and (b) the learning algorithm, with the features arguably being the more important of the two. The point of this assignment is for you to think about and experiment with both of these. Are there interesting features you can use? What latent signal might be important for NER? What have you learned in the class so far that can be brought to bear?
 
@@ -106,7 +106,7 @@ test_sents = list(conll2002.iob_sents('esp.testb'))
 
 ## Baselines
 
-The version we have given you gets about 49% F1 right out of the box. We made some very simple modifications, and got it to 60%. The threshold we ask you to beat is 68%, with partial credit available. The state of the art on the Spanish dataset is about 88%. If you manage to beat that, then look for conference deadlines and start writing, because you can publish it.  
+The version we have given you gets about 49% F1 right out of the box. We made some very simple modifications, and got it to 60%. The threshold we ask you to beat is 68%, with partial credit available. The state of the art on the Spanish dataset is over 90%. If you manage to beat that, then look for conference deadlines and start writing, because you can publish it.  
 
 In order to earn full marks on this assignment, demonstrate that you have thought about the problem carefully, and come up with solutions beyond what was strictly required. This is a very open-ended homework and we hope you take advantage of that to get out of your comfort zone and experiment. 
 
