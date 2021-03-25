@@ -144,9 +144,9 @@
   recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=0d478740-1a41-4481-a019-acdf0145f260
   readings:
     - 
-      title: Chapter 7 "Part of Speech Tagging"
+      title: Chapter 8 "Part of Speech Tagging"
       authors: Jurafsky and Martin
-      url: https://web.stanford.edu/~jurafsky/slp3/7.pdf
+      url: https://web.stanford.edu/~jurafsky/slp3/8.pdf
 -
   date: 2021-03-04
   title: Feaure Rich POS tagging and Neural Tagging
