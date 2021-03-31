@@ -215,8 +215,6 @@
       title: Chapter 11
       authors: Jurafsky and Martin
       url: https://web.stanford.edu/~jurafsky/slp3/11.pdf
-
-
 - 
   date: 2021-03-26
   title: Declare Project or Homework option
@@ -225,6 +223,16 @@
   date: 2021-03-29
   title: Quiz 4
   type: quiz
+-
+  date: 2021-04-1
+  title: Neural Machine Translation
+  type: lecture
+  readings:
+    - 
+      title: Chapter 18
+      authors: Eisenstein
+      url: https://github.com/jacobeisenstein/gt-nlp-class/tree/master/notes
+
 - 
   date: 2021-04-2
   title: Homework 8
