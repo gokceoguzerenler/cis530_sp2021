@@ -14,11 +14,11 @@ materials:
       url: https://nlp.stanford.edu/projects/jesc/data/split.tar.gz
     -
       name: skeleton iPython notebook
-      url: http://computational-linguistics-class.org/homework/nmt/cis530_nmt_skeleton.ipynb
+      url: http://markyatskar.com/cis530_sp2021/homework/nmt/cis530_nmt_skeleton.ipynb
    
     -
       name: yaml file for skeleton
-      url: http://computational-linguistics-class.org/homework/nmt/nmt.yaml
+      url: http://markyatskar.com/cis530_sp2021/homework/nmt/nmt.yaml
 
     -
       name: Japanese sentences to translate for leaderboard submission
