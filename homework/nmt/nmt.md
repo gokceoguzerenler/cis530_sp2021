@@ -5,8 +5,8 @@ caption: That's not how it works, but it is a good idea for <a href="https://arx
 img_link: https://xkcd.com/2168/   
 title: HW Option 1  - Neural Machine Translation
 active_tab: homework
-release_date: 2020-04-04
-due_date: 2020-04-14T11:59:59EDT
+release_date: 2021-04-04
+due_date: 2021-04-14T11:59:59EDT
 submission_link:
 materials:
     -
