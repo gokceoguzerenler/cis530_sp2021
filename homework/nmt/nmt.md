@@ -3,10 +3,10 @@ layout: default
 img: original_greek.png
 caption: That's not how it works, but it is a good idea for <a href="https://arxiv.org/pdf/1907.05791">collecting bitexts</a>
 img_link: https://xkcd.com/2168/   
-title: HW10 - Neural Machine Translation
+title: HW Option 1  - Neural Machine Translation
 active_tab: homework
-release_date: 2020-04-08
-due_date: 2020-04-15T11:59:59EDT
+release_date: 2020-04-04
+due_date: 2020-04-14T11:59:59EDT
 submission_link:
 materials:
     -
@@ -15,10 +15,17 @@ materials:
     -
       name: skeleton iPython notebook
       url: http://computational-linguistics-class.org/homework/nmt/cis530_nmt_skeleton.ipynb
+   
+    -
+      name: yaml file for skeleton
+      url: http://computational-linguistics-class.org/homework/nmt/nmt.yaml
+
     -
       name: Japanese sentences to translate for leaderboard submission
       url: http://computational-linguistics-class.org/homework/nmt/jp_test_sentences.txt
-attribution: This assignment was developed by Li "Harry" Zhang, Liam Dugan and Chris Callison-Burch for UPenn's CIS 530 class in Spring 2020 during the Coronavirus pandemic.
+
+
+attribution: This assignment was developed by Li "Harry" Zhang, Liam Dugan and Chris Callison-Burch for UPenn's CIS 530 class in Spring 2020 during the Coronavirus pandemic and updated in 2021.
 readings:
 -
    title: Neural Machine Translation
@@ -51,7 +58,7 @@ readings:
    authors: Jurafsky and Martin
    venue: Speech and Language Processing (3rd edition draft)
    type: textbook
-   url: https://web.stanford.edu/~jurafsky/slp3/10.pdf
+   url: https://web.stanford.edu/~jurafsky/slp3/11.pdf
 -
    title: JESC&#58; Japanese-English Subtitle Corpus
    authors: Reid Pryzant, Youngjoo Chung, Dan Jurafsky and Denny Britz
@@ -82,7 +89,7 @@ Warning: this assignment is out of date.  It may still need to be updated for th
 This assignment is due before {{ page.due_date | date: "%I:%M%p" }} on {{ page.due_date | date: "%A, %B %-d, %Y" }}.
 </div>
 
-Neural Machine Translation <span class="text-muted">: Assignment 10</span>
+Neural Machine Translation <span class="text-muted">: Homework Option 1</span>
 =============================================================
 
 In this assignment, you are to train a Japanese to English neural machine translation (NMT) system. Unlike many of your previous assignments in this class, this assignment will be almost entirely open-ended. You will write very little code and there will be very minimal instructions so you can learn to explore like a real NLP practitioner.
@@ -90,7 +97,7 @@ You will learn to use existing packages to build a complete end-to-end NMT pipel
 - Some preprocessing libraries to prepare the data, e.g. tokenization
 - An NMT library to train an NMT model, and generate translations
 - Some scripts to evaluate the translations
-
+Throughout the assigment, feel free to download and use any packages.
 <!-- List the materials from the header -->
 {% if page.materials %}
 <div class="alert alert-info">
@@ -110,7 +117,7 @@ To ensure that you’re able to effectively explore on your own, it is vital to 
 
 The earlier sections in the tutorial go over material that we have already covered in this class (namely NGram, log-linear, and RNN language models) so those who want to take the opportunity to quickly review are encouraged to do so. However, if you’re confident in your mastery of those topics you should be able to start with section 7 of the tutorial which goes over encoder-decoder models and section 8 of the tutorial which goes over attention. These two sections contain the most relevant information for this assignment.
 
-Additionally, while there is no Jurafsky and Martin chapter on Machine Translation in particular, reviewing the information on encoder-decoder models and attention in [Chapter 10](https://web.stanford.edu/~jurafsky/slp3/10.pdf) will still be very useful for not only this assignment but the upcoming BERT homework.
+Additionally, review the information on encoder-decoder models and attention in [Chapter 11](https://web.stanford.edu/~jurafsky/slp3/10.pdf) will still be very useful for not only this assignment but the upcoming BERT homework.
 
 ## Part 1: Setup Google Colab
 Okay, enough reading, now onto the technical sections. If you need a refresher on what Google Colab is or how it works, revisit Assignment 6. After you have a Notebook ready, make sure you set the hardware accelerator to `GPU` under `Change Runtime Type` in the `Runtime` menu.
@@ -139,7 +146,7 @@ You should now have three files (train, dev, test), each of which contain the En
 
 For our baseline preprocessing implementation, we will use a technique called Byte Pair Encoding (BPE) [(Sennrich et al. 2016)](https://www.aclweb.org/anthology/P16-1162/). This technique allows us to define tokens with much smaller granularity than just full words, which is particularly useful in languages such as Japanese where the concept of what is and isn’t a word is not particularly well defined.
 
-The way Byte-Pair encoding works is by starting with character-level tokens, then iteratively combining the two tokens which most frequently occur together. Continuing to do this up to a specified threshold gives us surprisingly robust tokens for words, subword units, as well as multi-word units. This technique can also help with the “unseen word problem”, as it naturally parses out the prefixes and suffixes from unseen words. (Look at 2.4.3 in textbook for more information)
+The way Byte-Pair encoding works is by starting with character-level tokens, then iteratively combining the two tokens which most frequently occur together. Continuing to do this up to a specified threshold gives us surprisingly robust tokens for words, subword units, as well as multi-word units. This technique can also help with the “unseen word problem”, as it naturally parses out the prefixes and suffixes from unseen words. (Look at 2.4.3 in Jurafsky and Martin for more information)
 
 You can find the original BPE implementation [here](https://github.com/rsennrich/subword-nmt) along with installation instructions. **Install it by modifying and running the corresponding code block in the skeleton Notebook.**
 
@@ -163,7 +170,7 @@ The base system consists of a simple attention-based sequence to sequence model 
 
 Once you’ve finished installing the OpenNMT library, follow the instructions in “Quickstart” to preprocess/binarize your data, train a model using the train and dev set, and generate translations for your test set by **modifying and running the corresponding code block in the skeleton Notebook**. In our case, the “source” is Japanese, and the “target” is English. That’s it. You have a complete translation system!
 
-Do be warned that training on the entirety of JESC will take you **upwards of 45 minutes**, so start early on this! You may also opt to only use 10% of the training data in your experiments to speed up your analysis.
+Do be warned that training on the entirety of JESC will take you **upwards of 90 minutes**, so start early on this! You may also opt to only use 10% of the training data in your experiments to speed up your analysis.
 
 Don’t forget to un-do the BPE tokenization for your output translations so that they actually look like normal words! You can do this using this Unix command:
 `!sed -r 's/(@@ )|(@@ ?$)//g' [bpe_file] > [word_file]`
@@ -185,7 +192,7 @@ While using BLEU is far from perfect, it has plenty of benefits.
 - It correlates highly with human evaluation.
 - It's popular!
 
-That being said, the shortcomings of BLEU are readily apparent (e.g. the inability to deal with synonyms) and MT experts, [such as one particular Penn professor](https://www.cis.upenn.edu/~ccb/publications/re-evaluating-the-role-of-bleu-in-mt-research.pdf), have been complaining about them for well over a  decade now. You may want to implement a different metric such as [METEOR](https://www.cs.cmu.edu/~alavie/METEOR/pdf/Banerjee-Lavie-2005-METEOR.pdf) or [hLEPOR](http://www.mt-archive.info/10/MTS-2013-Han.pdf) for one of your extensions as it may provide you valuable insight on the types of things BLEU gets wrong (you can do so in Part 5).
+That being said, the shortcomings of BLEU are readily apparent (e.g. the inability to deal with synonyms) and MT experts, [such as one particular Penn professor](https://www.cis.upenn.edu/~ccb/publications/re-evaluating-the-role-of-bleu-in-mt-research.pdf), have been complaining about them for well over a  decade now. You may want to implement a different metric such as [METEOR](https://www.cs.cmu.edu/~alavie/METEOR/pdf/Banerjee-Lavie-2005-METEOR.pdf) or [BERTScore](https://arxiv.org/abs/1904.09675) for one of your extensions as it may provide you valuable insight on the types of things BLEU gets wrong (you can do so in Part 5).
 
 **Following the skeleton notebook, modify and run the code block** to download the script for calculating BLEU using [Moses](http://www.statmt.org/moses/index.php?n=Main.HomePage), and calculate the BLEU score between your translation and the English test data.
 
@@ -200,7 +207,7 @@ Below, we list several ideas that you could do for your three additions/comparis
 So far, we have only been using BLEU as our metric. Consider some alternatives:
 - METEOR
 - ROUGE
-- hLEPOR
+- BERTScore
 
 How do we know which of these are any good? Well, we can manually examine the first 20 translations generated by our baseline system and rate them by [adequacy and fluency](https://www.taus.net/academy/best-practices/evaluate-best-practices/adequacy-fluency-guidelines) on an integer scale of 0-5. After that, calculate the sentence-level score for the selected metric for these 20 translations. Finally, calculate the [Spearman’s correlation](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient) of each metric with your judgement. If you decide to experiment with one of these metrics **please include the correlations of that metric with your judgements in your report along with an analysis.**
 
@@ -236,6 +243,10 @@ Once you have your final model, run your system on the [leaderboard test sentenc
 Your submission file should be named `translations.txt` and should consist only of the raw, not Byte-Pair Encoded English translations, one sentence per line. We will evaluate your translations using BLEU, and since we all know BLEU is not perfect, this will not constitute a lot of your grade.
 
 We will be putting the baseline system up on the leaderboard purely for your reference. **You are not required to beat it**. It is perfectly fine to submit a system that does worse than the baseline on BLEU as long as you include thoughtful analysis in your writeup. We encourage students to not only play around with things that improve their score but also to investigate the evaluation metrics themselves and analyze how they correlate with your human evaluation.
+
+## Writeup
+
+In your writeup, for each extention that you do, include (1) a section describing what you did (2) a section about how you evaluated and (3) a summary of your perceptions about the extension. You will not be evaluated on how well the extension worked, but instead whether or not your extension engaged with a component of how to build or evaluate an nmt system. If you have questions about whether an extension is enough, please ask on Piazza.
 
 ## Deliverables
 Here are the deliverables that you will need to submit:

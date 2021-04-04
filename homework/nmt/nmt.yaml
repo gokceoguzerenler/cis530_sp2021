@@ -1,0 +1,38 @@
+# nmt.yaml
+
+#Basic configuration file. You can add any arguments that would be passed via flags, as 
+# described here: https://opennmt.net/OpenNMT-py/ in the scripts section.
+
+## Where the samples will be written
+save_data: # prefix for saving files  
+## Where the vocab(s) will be written
+src_vocab: # vocabulary file for source
+tgt_vocab: # vocubulary file to target  
+# Prevent overwriting existing files in the folder
+overwrite: False
+
+# Corpus paths
+data:
+    corpus_1:
+        path_src: #[source train file]  
+        path_tgt: #[target train file] 
+    valid:
+        path_src: #[source dev file] 
+        path_tgt: #[target dev file]
+
+# Train on a single GPU
+# optimzer hyper-paramenters
+world_size: 1
+gpu_ranks: [0]
+learning_rate: 1
+start_decay_steps : 50000 
+
+
+# Where to save the checkpoints
+save_model: # [prefix for saivng models]
+save_checkpoint_steps: 10000
+train_steps: 100000
+valid_steps: 500
+
+#model parameters 
+layers: 2
