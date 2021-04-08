@@ -232,23 +232,49 @@
       title: Chapter 18
       authors: Eisenstein
       url: https://github.com/jacobeisenstein/gt-nlp-class/tree/master/notes
-
 - 
   date: 2021-04-2
   title: Homework 8
   type: homework
 - 
+  date: 2021-04-6
+  title: Transformers and Contextualized Embeddings
+  type: lecture
+  readings:
+    -
+      title: Illustrated BERT
+      authors: Jay Alammar
+      url: http://jalammar.github.io/illustrated-bert/
+- 
+  date: 2021-04-8
+  title: Question Answering
+  type: lecture
+  readings:
+    - 
+      title: Chapter 23
+      authors: Jurafsky and Martin
+      url: https://web.stanford.edu/~jurafsky/slp3/23.pdf
+- 
   date: 2021-04-9
   title: Project Milestone 1
-  type: homework
--
-  date: 2021-04-14
-  title: Homework Option 1
   type: homework
 -
   date: 2021-04-12
   title: Quiz 5
   type: quiz
+- 
+  date: 2021-04-13
+  title: Coreference Resolution
+  type: lecture
+  readings:
+    - 
+      title: Chapter 15
+      authors: Eisenstein
+      url: https://github.com/jacobeisenstein/gt-nlp-class/tree/master/notes
+-
+  date: 2021-04-14
+  title: Homework Option 1
+  type: homework
 - 
   date: 2021-04-16
   title: Project Milestone 2
