@@ -3,12 +3,12 @@ layout: default
 img: for_the_sake_of_argument.png
 caption: Identifying supporting and opposing arguments is a great way to annoy your friends.
 img_link: https://xkcd.com/1432/
-title: HW11 - Perspective Detection
+title: HW Option 2 - Perspective Detection
 active_tab: homework
-release_date: 2020-04-15
-due_date: 2020-04-22T23:59:59EDT
+release_date: 2021-04-10
+due_date: 2021-04-21T23:59:59EDT
 submission_link: 
-attribution: This assignment was developed by Sihao Chen and Chris Callison-Burch for UPenn's CIS 530 class in Spring 2020 during the Coronavirus pandemic.
+attribution: This assignment was developed by Sihao Chen and Chris Callison-Burch for UPenn's CIS 530 class in Spring 2020 and updated in 2021
 materials:
     - 
       name: Skeleton colab notebook (Please import this to colab)  
@@ -92,7 +92,7 @@ Warning: this assignment is out of date.  It may still need to be updated for th
 This assignment is due before {{ page.due_date | date: "%I:%M%p" }} on {{ page.due_date | date: "%A, %B %-d, %Y" }}.
 </div>
 
-Perspective Detection <span class="text-muted">: Assignment 11</span>
+Perspective Detection <span class="text-muted">: Homework Option 2</span>
 =============================================================
 
 When you ask Google question in natural language it attempts to get you a single correct answer.  This is great for questions like _What temperature is recommended for salmon?_ but it fails on questions for which there isn't a single correct answer like _Should uniforms be required in schools?_:
@@ -117,13 +117,13 @@ When you ask Google question in natural language it attempts to get you a single
 
 In questions like _Should uniforms be required in schools?_, users are seeking multiple perspectives on a topic.  Ideally, we should organize potential answers to such perspective-seeking queries into two sets: perspctives that support an idea, and perspectives that refute it.  
 
-As part of his PhD research, your TA Sihao built a demonstration search engine called [PerspectroScope](https://perspectroscope.seas.upenn.edu/). Given a __claim__ as input, PerspectroScope will look for potential __perspectives__ on the web, and use classifiers trained on a dataset called [Perspectrum](https://cogcomp.seas.upenn.edu/perspectrum/) to decide whether each potential perspctive is __relevant__ and whether it is __supports__ or __opposes__ the claim.   Here's an example of Sihao's search engine organizes perspectives related to animal rights:
+As part of his PhD research at Penn, Sihao Chen built a demonstration search engine called PerspectroScope. Given a __claim__ as input, PerspectroScope will look for potential __perspectives__ on the web, and use classifiers trained on a dataset called [Perspectrum](https://cogcomp.seas.upenn.edu/perspectrum/) to decide whether each potential perspctive is __relevant__ and whether it is __supports__ or __opposes__ the claim.   Here's an example of Sihao's search engine organizes perspectives related to animal rights:
 
 <div class="text-center">
 <img src="perspectrum_eval_setting.png" alt="An overview of how a search engine could classify perspectives." class="img-fluid" width="500px"  />
 </div>
 
-Here is a [youtube video](https://www.youtube.com/watch?v=MXBTR1Sp3Bs) that demonstrates the functionality of the search engine. You are also welcomed to [try the search engine yourself](https://perspectroscope.seas.upenn.edu/).
+Here is a [youtube video](https://www.youtube.com/watch?v=MXBTR1Sp3Bs) that demonstrates the functionality of the search engine.
 
 
 ### Learning Goals
@@ -258,11 +258,10 @@ Here are **some ideas for improvements**:
 
 ## Report
 
-As usual we want you to keep track of all experiments and findings in your report. But here are the list of things that we are looking for (and will grade the report on).
+As usual we want you to keep track of all experiments and findings in your report. Here are the list of things that we are looking for:
 1. You should make **at least three modifications/extension** to the baseline model and explain what you did. 
 2. For each modification, specify the size and the type of the BERT model you use, plus the hyper-parameters you chose for training. Include the performance on the dev set for each configuration.
 3. Using the best performing model on dev set, identify a few mistakes that the model makes on dev set. Include a few of such claim/perspective pairs in the report and briefly describe the mistake and why you think the model produces the wrong prediction.
-4. **Write a few sentences on what you think makes the Perspective Detection task challenging**. (Note that there isn't a single correct answer to the question; we are interested in knowing your perspective!)
 
 
 ## Deliverables 

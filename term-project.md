@@ -63,10 +63,10 @@ Your project will be a self-designed multi-week team-based effort. Your final pr
 1. A formal definition of the problem and a motivation for while it is an interesting challenge for natural language processing. A literature review of past approaches to the problem.
 1. A commented implementation of the simplest possible solution to the problem.  For instance, this could be a majority class baseline or a random baseline. 
 1. A commented implementation of a baseline published in the literature, along with skeleton code obtained by removing the parts that students should implement.
-1. One extension per team member that attempts to improve on the baseline, along with a brief (one- to three-paragraph) accompanying write-up for each extension describing the general approach and whether it worked.
+1. Extensions that attempts to improve on the baseline, along with a brief (one- to three-paragraph) accompanying write-up for each extension describing the general approach and whether it worked. If you have 4 team members, you should implement 2 extensions.  If you have 5, then 3 extensions.  If you have 6, then 4 extensions. Interesting analysis can count as an extension.  
 1. A evaluation script that can be used to score submissions like on the class leaderboard. The output of any model implementations should be gradeable with this program.
 1. A final report summarizing your results.
-1. A short 5 minute presentation to Mark about your project, with a 2-5 minutes for questions.
+1. A short 5-10 minute presentation to Mark about your project, with a 2-5 minutes for questions.
 
 Term project is split into 4 deliverables, where the first three are worth 5% each, and the final report and presentation are worth 10%.  You don't have to wait to start working on each part of the project.  We encourage you to begin work early, so that you have a polished final product.
 
