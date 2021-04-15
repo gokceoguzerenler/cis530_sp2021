@@ -275,7 +275,16 @@
   date: 2021-04-14
   title: Homework Option 1
   type: homework
-- 
+-
+  date: 2021-04-15
+  title: Generation Survey
+  type: lecture
+  readings:
+    - 
+      title: Chapter 24
+      authors: Jurafsky and Martin
+      url: https://web.stanford.edu/~jurafsky/slp3/24.pdf
+-
   date: 2021-04-16
   title: Project Milestone 2
   type: homework
