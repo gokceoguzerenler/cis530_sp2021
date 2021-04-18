@@ -289,22 +289,38 @@
   title: Project Milestone 2
   type: homework
 -
+  date: 2021-04-20
+  title: Fairness and Bias in NLP
+  type: lecture
+-
   date: 2021-04-21
   title: Homework Option 2
   type: homework
+-  
+  date: 2021-04-22
+  title: Kenton Lee - Inductive Biases for Extreme Generalization in NLP
+  type: lecture
 - 
   date: 2021-04-23
   title: Project Milestone 3
   type: homework
 -
-  date: 2021-04-26
+  date: 2021-04-27
+  title: Yonatan Bisk - Language to Action and Control
+  type: lecture
+-
+  date: 2021-04-28
   title: Quiz 6
   type: quiz
 -
-  date: 2021-04-28
-  title: Homework Option 3
+  date: 2021-04-29
+  title: Final Lecture - Wrap up and Reflections on Current State of NLP Research
+  type: lecture
+-
+  date: 2021-05-7
+  title: Homework Option 3 ( no late days allowed )
   type: homework
 - 
-  date: 2021-04-30
-  title: Project Final
+  date: 2021-05-7 
+  title: Project Final ( no late days allowed )
   type: homework
