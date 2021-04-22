@@ -3,10 +3,10 @@ layout: default
 img: chatbot-panel-3.png
 caption: Chatbots are getting better 
 img_link: https://xkcd.com/948/
-title: HW12 - Generating Text with Large Pre-Trained Language Models
+title: Homework Option 3 - Generating Text with Large Pre-Trained Language Models
 active_tab: homework
-release_date: 2020-04-22
-due_date: 2020-04-29T11:59:59EDT
+release_date: 2021-04-22
+due_date: 2021-05-07T11:59:59EDT
 submission_link: 
 materials:
     - 
@@ -22,7 +22,7 @@ materials:
       name: Text Adventures Test Set
       url: https://computational-linguistics-class.org/homework/transformers/text_adventures_test.txt
 
-attribution: This assignment was created by Daphne Ippolito for UPenn's "Interactive Fiction and Text Generation" course in Spring 2020.  It was adapted for UPenn's CIS 530 course by Arun Kirubarajan, Tatiana Tsygankova, Sihao Chen, and Chris Callison-Burch in Spring 2020 during the Coronavirus pandemic.
+attribution: This assignment was created by Daphne Ippolito for UPenn's "Interactive Fiction and Text Generation" course in Spring 2020.  It was adapted for UPenn's CIS 530 course by Arun Kirubarajan, Tatiana Tsygankova, Sihao Chen, and Chris Callison-Burch in Spring 2020 during the Coronavirus pandemic and updated in 2021
 readings:
 - 
   id: language_models_are_unsupervised_multitask_learners
@@ -76,7 +76,7 @@ Warning: this top secret assignment is out of date.  It may still need to be upd
 This assignment is due before {{ page.due_date | date: "%I:%M%p" }} on {{ page.due_date | date: "%A, %B %-d, %Y" }}.
 </div>
 
-Generating Text with Large Pre-Trained Language Models<span class="text-muted"> : Assignment 12</span>
+Generating Text with Large Pre-Trained Language Models<span class="text-muted"></span>
 =============================================================
 
 For this homework, we will combine ideas from the entire class: language models, vector-based word representations, and neural networks.  We'll be using large, pre-trained language models to generate text, and studying some of the biases that get encoded in to these kinds of models. 
@@ -148,20 +148,18 @@ We have provided a Google Colab notebook that walks you through the process of *
 Fine tuning the full GPT-2 model can take a long time on Colab.  You might consider upgrading to [Colab Pro](https://colab.research.google.com/signup), which costs $10/month. 
 </div>
 
-For this assignment, your task is going to fine-tune a released version of GPT-2 on two datasets: a text adventure set that we give you, and on a dataset *of your own choosing*. The data set we have provided for you is based on stories in the style of Choose Your Own Adventure books that we downloaded from [chooseyourstory.com](http://chooseyourstory.com).  This data was used to train a super-cool AI based text-adventure game called [AI Dungeon](https://play.aidungeon.io).  CCB is kind of obsessed with this thing.  
+For this assignment, your task is going to fine-tune a released version of GPT-2 on two datasets: a text adventure set that we give you, and on a dataset *of your own choosing*. The data set we have provided for you is based on stories in the style of Choose Your Own Adventure books that we downloaded from [chooseyourstory.com](http://chooseyourstory.com).  This data was used to train a super-cool AI based text-adventure game called [AI Dungeon](https://play.aidungeon.io). 
 
-In addition to fine-tuning to our text adventure data, we're asking to to create your own data set.  It can be anything you like –*Harry Potter fan fiction, Shakespeare, music lyrics*– be creative and have fun. Preparing your own dataset will involve you downloading/cleaning text from the internet, or creating the dataset yourself. Remember to create the usual train/dev/test split for the data that you create! Include your dataset along with your submission on Gradescope, and describe the process of designing your dataset in your report.
+In addition to fine-tuning on text adventure games, we're asking to to create your own data set.  It can be anything you like –*Harry Potter fan fiction, Shakespeare, music lyrics*– be creative and have fun. Preparing your own dataset will involve you downloading/cleaning text from the internet, or creating the dataset yourself. Remember to create the usual train/dev/test split for the data that you create! Include your dataset along with your submission on Gradescope, and describe the process of designing your dataset in your report.
 
 The provided notebook generates text by randomly sampling the next word in proportion to its probability according to the model. One extension that we commonly use to get better generations is to truncate the distribution to only consider the top $k$ words. This is called **top-k** sampling and the value of $k$ is a hyperparameter that we can choose through the process of our experiments. This strategy intuitively makes sense, since words at the bottom of the distribution (i.e. with low and near-zero probabilities) probably won't cause for better generation quality and we're better off re-distributing the probability mass to more likely candidates. 
 
 ### Your Tasks
-1. Fine-tune a GPT-2 model (any size is fine, but larger sizes are more fun!) on the provided text-adventure dataset using the example code. Note that training will take a while - training for one epoch using the default parameters takes approximately 25 min. Report the perplexities before and after fine-tuning and describe the trends of perplexity in your report. Generate a few samples before moving on to get a feel for the model. 
+1. Fine-tune a GPT-2 model (any size is fine, but larger sizes are more fun!) on the provided text-adventure dataset using the example code. Note that training will take a while - training for one epoch using the default parameters takes approximately 15 min. You will need to fine-tune for several epochs. Report the perplexities before and after fine-tuning and describe the trends of perplexity in your report. Generate a few samples before moving on to get a feel for the model. 
 
 2. Repeat 1) using a dataset you put together. Similarly, report perplexities before and after and a few generated samples.
 
-3. The skeleton code uses *top-$k$* sampling, with the $k$ parameter set to be 50. Experiment with different sampling strategies to generate text and include examples, as well as your own qualitative assessment of the outputs in your report.
-   
-4. Instead of having a leaderboard for this assignment, we will be awarding extra credit to the most subjectively interesting/funny/impressive generations. Submit your favorite 150-token generation as a PDF document on Gradescope to participate!
+3. Instead of having a leaderboard for this assignment, we will be awarding extra credit to the most subjectively interesting/funny/impressive generations. Submit your favorite 150-token generation as a PDF document on Gradescope to participate!
 
 <!-- List the materials from the header -->
 {% if page.materials %}
@@ -183,10 +181,9 @@ You can use the materials for this assignment here:
 
 3. Summarize fine-tuning results on your personal dataset, including perplexities before fine-tuning and afterwards. Comment on how this trend differs from the results of Task 1. Include a few sample generations.
 
-4. Experiment with different sampling strategies, including examples of the data your model produces. Include a brief analysis of the obtained results. 
 
 ## Part 2: Language Model Bias
-One problem with machine learning models that are trained on large internet-based text corpora is that they exhibit biases that exist in the training data, for example gender bias. In this task, you will get the chance to uncover some of these biases on your own. Using [this masked language model demo developed by our TA Sihao](http://dickens.seas.upenn.edu:4001/), explore the following questions. In order to use the demo, you need to copy the prompt into the “Mandatory sentence.” box, and keep the default selection as “per-token independent selections”. In your report, include observations in response to the following mini exploration tasks. 
+One problem with machine learning models that are trained on large internet-based text corpora is that they exhibit biases that exist in the training data, for example gender bias. In this task, you will get the chance to uncover some of these biases on your own. Using [this masked language model](http://dickens.seas.upenn.edu:4001/), explore the following questions. In order to use the demo, you need to copy the prompt into the “Mandatory sentence.” box, and keep the default selection as “per-token independent selections”. In your report, include observations in response to the following mini exploration tasks. 
 
 The demo visualizes the Masked LM objective of BERT. Given a input sentence, with some of the tokens masked or hidden, BERT will try to predict the likely words/sub-words for these positions.  Here's what the demo looks like: 
 
@@ -195,7 +192,7 @@ The demo visualizes the Masked LM objective of BERT. Given a input sentence, wit
 </div>
 
 
-Each column shows a list predicted tokens for the word position, along with the predicted score/probability. To see the predictions, you should input a sentence in the "Mandatory sentence" field.  The format is designed for sentence pair classification tasks (e.g. HW11).
+Each column shows a list predicted tokens for the word position, along with the predicted score/probability. To see the predictions, you should input a sentence in the "Mandatory sentence" field.
 
 
 You may notice that the BERT tokenizer adds a few special tokens to the input --
@@ -218,8 +215,6 @@ For this part of the assignment, there is no code to implement.  All you have to
     Now, try to change the main structure of the sentence (i.e. move it away from the lunch theme) to encourage the model to give different pronoun predictions for the same profession. What do these results tell you? Is this easy or difficult to do? Does your setup work for different professions? 
 
 4. As a final step, explore biased pronoun prediction outside the scope of professions, for example in the scope of activities (or whatever else interests you). Are there activities you expect to be more gender-neutral than they actually are based on the language model predictions? Are there any particularly surprising examples that stood out to you? Experiment to the degree you find interesting, and briefly summarize your findings in the report.
-
-This is an open problem in natural language processing research: mitigating the uncontrollability of language models.
 
 ## Deliverables 
 <div class="alert alert-warning" markdown="1">
