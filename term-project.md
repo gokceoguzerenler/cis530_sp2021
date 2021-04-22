@@ -63,7 +63,7 @@ Your project will be a self-designed multi-week team-based effort. Your final pr
 1. A formal definition of the problem and a motivation for while it is an interesting challenge for natural language processing. A literature review of past approaches to the problem.
 1. A commented implementation of the simplest possible solution to the problem.  For instance, this could be a majority class baseline or a random baseline. 
 1. A commented implementation of a baseline published in the literature, along with skeleton code obtained by removing the parts that students should implement.
-1. Extensions that attempts to improve on the baseline, along with a brief (one- to three-paragraph) accompanying write-up for each extension describing the general approach and whether it worked. If you have 4 team members, you should implement 2 extensions.  If you have 5, then 3 extensions.  If you have 6, then 4 extensions. Interesting analysis can count as an extension.  
+1. Extensions that attempts to improve on the baseline, along with a brief (one- to three-paragraph) accompanying write-up for each extension describing the general approach and whether it worked. Teams of size 1,2,3,4,5,6 should do 1,1,2,2,3,3 extensions, respectively. Interesting analysis can count as an extension.  
 1. A evaluation script that can be used to score submissions like on the class leaderboard. The output of any model implementations should be gradeable with this program.
 1. A final report summarizing your results.
 1. A short 5-10 minute presentation to Mark about your project, with a 2-5 minutes for questions.
@@ -234,9 +234,7 @@ You may also want to cover topics like this:
 
 
 
-For Milestone 4, you'll need to implement several extensions beyond this published baseline.  These should be different experiments that you run to try to improve its performance.  The number of extension that you'll implement depends on number of members of your group.  If you have 3-4 team members, you should implement 2 extensions.  If you have 5-6, then 3 extensions. 
-
-
+For Milestone 4, you'll need to implement several extensions beyond this published baseline.  These should be different experiments that you run to try to improve its performance. Teams of size 1,2,3,4,5,6 should do 1,1,2,2,3,3 extensions, respectively.
 
 ## What do you need to turn in?
 
@@ -249,7 +247,7 @@ This milestone is worth 5% of the grade.
 <a name="milestone-4"></a>
 # Milestone 4
 
-For your final milestone, you'll complete your extensions to the baseline, and you'll produce a final writeup for your term project.  As a reminder, the number of extensions that you must submit depends on your group size.  If you have 4 team members, you should implement 2 extensions.  If you have 5, then 3 extensions.  If you have 6, then 4 extensions. 
+For your final milestone, you'll complete your extensions to the baseline, and you'll produce a final writeup for your term project.  Teams of size 2,3,4,5,6 should do 1,2,2,3,3 extensions, respectively.
 
 Your final report should be written in the style of a scientific paper, and formatted with [this LaTeX style file](https://www.overleaf.com/latex/templates/acl-2020-proceedings-template/zsrkcwjptpcd) (which will make it look totally scientific!).  Your report should contain the following sections:
 
