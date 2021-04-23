@@ -179,6 +179,7 @@
   date: 2021-03-16
   title: Dependency Parsing
   type: lecture
+  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=af2c848f-634e-4000-a734-aced0133145f
   readings:
     - 
       title: Chapter 14 "Dependancy Parsing"
@@ -188,6 +189,7 @@
   date: 2021-03-18
   title: Information Extraction
   type: lecture
+  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a3e82b0a-9c87-4a16-9559-acef013ce860
   readings:
     - 
       title: Chapter 17 "Information Extraction"
@@ -201,6 +203,7 @@
   date: 2021-03-23
   title: Information Extraction + Semantic Role Labeling
   type: lecture
+  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9f1cd247-2433-4f64-a362-acf4013977c2
   readings:
     - 
       title: Chapter 13
@@ -210,6 +213,7 @@
   date: 2021-03-25
   title: Sequence to Sequence Models + Translation
   type: lecture
+  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1e61a72f-02ff-42ec-b0fe-acf601358c3f
   readings:
     - 
       title: Chapter 11
@@ -227,6 +231,7 @@
   date: 2021-04-1
   title: Neural Machine Translation
   type: lecture
+  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8eb3484b-2646-444a-aa24-acfd0143f3d8
   readings:
     - 
       title: Chapter 18
@@ -240,6 +245,7 @@
   date: 2021-04-6
   title: Transformers and Contextualized Embeddings
   type: lecture
+  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c0934819-f02d-4359-af92-ad02013ec22c
   readings:
     -
       title: Illustrated BERT
@@ -249,6 +255,7 @@
   date: 2021-04-8
   title: Question Answering
   type: lecture
+  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a7d35386-a2f4-488e-88bc-ad0401400224
   readings:
     - 
       title: Chapter 23
@@ -266,6 +273,7 @@
   date: 2021-04-13
   title: Coreference Resolution
   type: lecture
+  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=cf0ec55d-7da4-429c-a156-ad09013c515b
   readings:
     - 
       title: Chapter 15
@@ -279,6 +287,7 @@
   date: 2021-04-15
   title: Generation Survey
   type: lecture
+  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=16ea0572-9dd8-4b57-8d0f-ad0b013ca22d
   readings:
     - 
       title: Chapter 24
@@ -292,6 +301,7 @@
   date: 2021-04-20
   title: Fairness and Bias in NLP
   type: lecture
+  recording: https://upenn.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e24b9297-efdc-4ae8-9b2a-ad10013b096d
 -
   date: 2021-04-21
   title: Homework Option 2
